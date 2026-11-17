@@ -58,6 +58,8 @@ Open `index.html` in a browser. Your decks are saved in that browser on this dev
 
 SmartDeck does not send lesson text to an AI service. Its material builder can make local draft cards from pasted text or authorized text files, and it can try a direct HTTPS fetch for HTML/plain-text pages that allow this browser to read them. It does not use a proxy, send login credentials, bypass access controls, or claim to extract an entire book. Browser cross-origin rules prevent JavaScript from reading many sites even when you have permission to study their content; PDFs and login-protected sources are not supported by this importer. If a link is blocked, copy text you are allowed to use or choose a local text/Markdown/HTML file. Review and edit every draft before adding it. For AI-generated source-backed cards, use the optional Copilot prompt and import reviewed JSON; SmartDeck itself makes no AI calls.
 
+Security note: the page includes a Content Security Policy that pins its inline app script and limits resource types, but GitHub Pages does not currently return a CSP response header. After editing `index.html`, run `node scripts/check-csp.js` to ensure the script hash still matches and the core policy directives remain present. This is defense in depth, not a security audit; browser `localStorage` is not encrypted or synced, so do not store sensitive information in a shared or untrusted device profile.
+
 Speech is optional and uses voices installed in the browser or operating system; available voices differ by device. The quiz does not automatically judge free-form answers: you reveal the model answer and rate yourself, so valid paraphrases are not incorrectly marked wrong.
 
 ## Reference library

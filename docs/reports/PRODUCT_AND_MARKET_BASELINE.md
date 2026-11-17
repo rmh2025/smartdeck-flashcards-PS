@@ -23,7 +23,7 @@ The scan uses public product pages and help articles opened on 2026-11-16 and ta
 | [Anki](https://apps.ankiweb.net/) | Official product pages describe scheduled reviews, AnkiWeb synchronization, media, layout/review customization, add-ons, and public deck sharing. | Strong reference for scheduling and portability. SmartDeck has only simple local intervals and no sync; don't imply feature parity or comparable retention results. |
 | [Quizlet](https://help.quizlet.com/hc/en-us/articles/360030841732-Studying-on-Quizlet) | Help Center describes flashcard sets, progressive Learn, tests, study guides, activities, and AI-powered tools. Its import guide accepts pasted term-definition rows using selected separators and also points to AI study guides/Smart Assist for unorganized notes. Some functions have eligibility or plan limits. | A reference for lowering friction between existing notes and sets. SmartDeck now supports local paste/file drafts and CORS-permitted page loading, but does not match Quizlet's AI generation or account-based feature set. Streaks are product examples, not evidence that SmartDeck's reward rules improve learning. |
 | [Brainscape](https://www.brainscape.com/) | Markets AI-assisted flashcard creation/discovery, spaced repetition, progress metrics, and a library of publisher-described certified decks. | Signals competition around content discovery and automated creation. Its marketing and certification statements were not independently tested; SmartDeck does not currently generate cards with an AI service. |
-| [Knowt](https://knowt.com/ai-flashcard-maker) | Official AI Flashcard Maker page invites users to paste notes or upload multiple file types to generate cards and other study activities. | This is an important source-to-study workflow benchmark. It is an AI service, not an independent quality or learning-outcome evaluation; upload processing and privacy differ from SmartDeck's local-only text builder. |
+| [Knowt](https://knowt.com/ai-flashcard-maker) | Official AI Flashcard Maker page advertises pasting notes or uploading up to 30 files, including PDF, image, video, PowerPoint, and audio, to generate cards and other study activities. | This is an important source-to-study workflow benchmark. These are vendor claims, not an independent quality or learning-outcome evaluation; upload processing and privacy differ from SmartDeck's local-only text builder. |
 | **SmartDeck (current)** | One HTML file; browser-local persistence; four full visual systems (type, shape, spacing, layout, and colors); custom background; material links/text/Markdown/HTML files; local term-definition, Q/A, heading, and prose draft generation with editable preview; JSON import/export; optional speech and self-rated rewards. | Preserve the no-build, source-review, user-control approach. Direct URL loading is limited to HTTPS text/HTML pages whose servers permit browser CORS, with no login credentials or proxy. PDFs, full-site crawling, unrestricted book extraction, remote AI, cloud sync, and validated mastery scoring are not implemented. |
 
 ### Competitive conclusions
@@ -34,6 +34,76 @@ The scan uses public product pages and help articles opened on 2026-11-16 and ta
 - Static public pages do not establish market share, accessibility quality, customer satisfaction, or underserved demand.
 - No price comparison was made. Do not publish pricing claims from this snapshot.
 - Source-to-set friction is a core competitive workflow, not a minor utility. The prior review underweighted this because it documented the Copilot JSON path instead of comparing the shortest paste/import journey.
+
+## What SmartDeck is missing and how to compete
+
+This is a capability comparison, not a ranking of product quality. It is based on the official competitor pages linked above and in the [reference library](../REFERENCE_LIBRARY.md), checked 2026-11-17. Availability can vary by plan, account, platform, or product changes.
+
+| Capability | Competitor evidence | SmartDeck today | Gap and consequence |
+|---|---|---|---|
+| Broad content import and AI-assisted creation | Knowt advertises multiple media/file inputs and generated study materials; Quizlet documents paste import and AI study-guide tools. | Local heuristic generation from pasted notes, text/Markdown/HTML files, and direct HTTPS text/HTML only when CORS permits. | **Major gap:** no PDF, image, audio, video, slide, authenticated page, full-book extraction, or in-app AI. Large or protected sources require user-selected supported text, not an attempted bypass. |
+| Study modes and adaptive scheduling | Quizlet documents Learn, Test, activities, and study guides; Anki documents scheduled reviews and configurable study workflows. | Flashcard review, self-rated Again/Hard/Good/Easy intervals, due cards, quiz rounds, and game rewards. | **Major gap:** fewer modes and a simpler schedule; current rewards and self-ratings do not prove mastery or learning effectiveness. |
+| Shared libraries and collaboration | Anki describes public deck sharing; Quizlet documents sets and sharing. | Personal decks stored in one browser profile; no public library, class spaces, or collaborative editing. | **Major gap:** no discovery or group workflow. Adding sharing would introduce moderation, rights, privacy, and account/security requirements. |
+| Sync, device continuity, and recovery | Anki documents AnkiWeb synchronization; Quizlet documents web and mobile study experiences. | Browser `localStorage` and manual JSON deck portability. | **Major gap:** no automatic backup, sync, account, or native mobile app. Browser data can be cleared; exported JSON is a manual recovery path, not sync. |
+| Media-rich cards and accessibility assurance | Competitor pages document some media/study options; public feature pages do not establish WCAG conformance. | Text-first cards, optional browser speech, four complete themes, background choice, keyboard support, and reduced-motion styling. | **Partial strength and open gap:** personalization is implemented, but media-rich cards and independent assistive-technology/WCAG verification are absent. Do not claim accessibility superiority. |
+
+### Practical way to outperform the category
+
+Do not try to match every competitor feature or claim that SmartDeck is already better. Test a narrower promise: **a fast, understandable, user-controlled path from permitted study notes to editable cards and a first review, with local storage and clear limits.**
+
+1. Run the same short tasks and same source material in SmartDeck and selected competitors. Record task completion, elapsed time, abandoned attempts, source-access failures, and how many generated cards learners keep or materially edit.
+2. Observe intended learners using keyboard, speech, zoom, and their chosen display settings. Report barriers and task success, not just preference votes or a checklist.
+3. Keep the low-friction paste/file route and transparent source attribution. Improve import formats only after deciding how to handle privacy, copyright, security, and local-versus-server processing.
+4. Preserve local-first data control and make recovery limits visible. Consider sync or collaboration only after demand and the resulting account, backup, access-control, and operational obligations are understood.
+5. Set numeric performance and accessibility targets from a documented pilot baseline; until then, completion time, draft usefulness, and market preference are **not measured**.
+
+Competitor pages describe features; they do not disclose the companies' internal design psychology. Competitor reviews also have not been sampled, so no review-derived user needs or pain-point prevalence is claimed. See the [research plan](#research-plan-before-making-market-claims) before using review or user-study evidence.
+
+## Final scorecard (2026-11-17)
+
+Scores below answer different questions and must not be collapsed into a claim about market rank, learning efficacy, or certification.
+
+### Goal attainment: **4.0 / 5**
+
+Method: unweighted mean across the eight project goals below. `5` = completed and verified against the stated goal; `4` = substantially complete with bounded follow-up; `3` = partial; lower scores indicate larger omissions. Scores are an evidence-based project self-assessment, not an external grade.
+
+| Project goal | Score | Evidence and remaining limit |
+|---|---:|---|
+| Publish a working, click-to-run app | 5 | GitHub Pages deployment succeeded and the live app was opened; see the release record in the quality baseline. |
+| Provide truly distinct, changeable themes | 5 | Four full visual systems were implemented and exercised; preferences are based on owner feedback, not target-user validation. |
+| Reduce bulk material-to-card friction | 3 | Paste, supported local files, and CORS-permitted text/HTML links produce editable drafts. No PDFs, complete-book extraction, arbitrary web scraping, or in-app AI. |
+| Explain important UI controls and decisions | 4 | A control-by-control purpose/evidence/check map exists. Competitor motivations and broader user preferences remain unvalidated. |
+| Provide competitor and target-market analysis | 3 | Official feature documentation was compared and gaps are stated. No review sample, interviews, representative market study, or outcome comparison was completed. |
+| Build in and report security/privacy considerations | 3 | Client-side safeguards and data-flow limits are documented, and a hash-pinned-script CSP meta policy was locally tested. No independent review or penetration test exists; the live policy still needs post-deployment verification. |
+| Test functional behavior and report results | 4 | Broad manual/browser regression and release smoke checks are recorded; no persistent automated test suite or cross-browser/AT matrix exists. |
+| Create reusable project references and workflow | 5 | Centralized sources, dated baselines, traceability, and a repeatable development/release workflow are documented. |
+
+**Not scored:** complete class-rubric compliance, because the original complete handout was not located; only the README excerpt was available. **Schedule adherence / “how soon”: not measurable**, because no agreed start date, deadline, or milestone durations were recorded. The feature work is published, but elapsed-time or on-time claims would be invented.
+
+### Competitive capability coverage: **2.0 / 5**
+
+Method: unweighted mean of six dimensions (`0` absent, `1` minimal, `2` basic, `3` substantial, `4` broad/mature, `5` independently benchmarked as leading). This scores the current scope against the documented category capabilities, not relative market success.
+
+| Dimension | Score | Basis |
+|---|---:|---|
+| Create/import breadth | 2 | Useful paste, text-file, and limited URL workflow; much narrower than advertised PDF/media/AI import. |
+| Study modes/scheduling | 2 | Flashcards, basic intervals, and quiz rewards; fewer modes and less mature scheduling than reviewed products. |
+| Shared content/collaboration | 1 | No public library, class, or collaboration features. |
+| Cross-device continuity/recovery | 1 | Manual JSON export/import only; no automatic sync or cloud backup. |
+| Customization and accessible operation | 3 | Four full themes and some keyboard/speech/reduced-motion support; no independent accessibility audit and media support is limited. |
+| Local data control and transparency | 3 | No account/server/analytics; data remains in browser storage with JSON portability, but storage is not encrypted or synced and searches leave for Google. |
+
+This score is not a market-share forecast, competitive win rate, validated user-preference score, or claim that competitors outperform on every task. Exact feature availability and usability still require hands-on, same-task comparison.
+
+### Security maturity: **2.0 / 5**
+
+Method: `0` no controls evidenced; `1` ad hoc; `2` baseline mitigations documented but no independent assurance; `3` repeatable security checks and defense in depth; `4` independent review and verified protections; `5` ongoing, externally assessed security operations. SmartDeck currently fits level 2: meaningful controls exist, but assurance is limited.
+
+Strengths observed in code: no app backend, account, or analytics; card strings are escaped; imported card fields are validated; remote HTML is parsed inertly; user-triggered fetches omit credentials and have type/size/time bounds; JSON imports have a 10 MB limit; explicit local-storage and source-access limits are documented.
+
+Gaps: browser `localStorage` is not encrypted or synced; no independent code review, penetration test, automated malicious-input suite, or complete threat model is recorded. The checked GitHub Pages response had HSTS but no CSP **HTTP response header**. To add defense in depth without changing the single-file app, the page now includes a CSP meta policy that allows only the SHA-256-pinned inline script, blocks plugins and base-URL changes, and limits resource types. Inline styles remain allowed for dynamic theme/background styling, and `connect-src https:` remains broad because users may fetch permitted source pages; a meta policy also cannot enforce `frame-ancestors`. A client-side local/IP hostname check is not a network boundary. These header findings are point-in-time observations from 2026-11-17, not a guarantee of future host configuration.
+
+Next security gates: review the threat model and data flows; retain a test that recomputes the inline-script hash whenever `index.html` changes; exercise malformed/oversized import and safe-rendering cases; verify the deployed page has no CSP violations; then request an independent review before making a security-strength claim. Do not weaken the policy merely to silence a failure or display a CSP directive.
 
 ### Owner feedback and strategy correction
 
@@ -117,7 +187,7 @@ This table makes the research and user preferences actionable without turning a 
 
 SmartDeck is a browser-only prototype with no application server, account system, or analytics. Decks and progress live in the browser's `localStorage`; that data is not encrypted by SmartDeck, can be cleared with browser data, and does not sync. The optional source search opens Google with the selected topic. Direct material loading is a user-triggered browser request, omits login credentials, and depends on HTTPS/text limits and the source server's CORS policy; it is not a proxy or a way around access controls. The app rejects literal local/IP hostnames and checks the final redirect URL, but this client-side hostname check is **not** a network security boundary or a DNS/IP validation guarantee. Material processing and heuristic draft generation happen in the page.
 
-Static code inspection found that user/card strings are HTML-escaped before template rendering, imported card fields are validated, remote HTML is parsed in a detached DOM with active-content elements removed, and fetched/file material is bounded by the documented response and file limits. JSON imports are capped at 10 MB before reading and 1,000 cards after parsing. These are observed implementation controls, not proof of exploit resistance. The repository has no recorded independent security review, penetration test, cross-browser threat assessment, or malicious-content test suite. Keep security checks in each feature's acceptance criteria: validate type/size/URL; use safe text rendering; avoid secrets and unnecessary transmission; show failures; review import boundaries; and confirm browser permissions before access. If a future backend, AI API, sync, authentication, or document-conversion service is proposed, pause for a separate privacy/data-flow and threat-model decision before implementation.
+Static code inspection found that user/card strings are HTML-escaped before template rendering, imported card fields are validated, remote HTML is parsed in a detached DOM with active-content elements removed, and fetched/file material is bounded by the documented response and file limits. JSON imports are capped at 10 MB before reading and 1,000 cards after parsing. The checked GitHub Pages response returned HSTS but no CSP HTTP header; the app now carries a meta CSP with a SHA-256-pinned inline script. Its inline style allowance supports the current dynamic theme/background design, and the HTTPS connection allowance is needed for user-requested source loading; neither is a claim of a fully restrictive policy. These are point-in-time observations and implementation controls, not proof of exploit resistance. The repository has no recorded independent security review, penetration test, cross-browser threat assessment, or malicious-content test suite. Keep security checks in each feature's acceptance criteria: validate type/size/URL; use safe text rendering; avoid secrets and unnecessary transmission; show failures; review import boundaries; and confirm browser permissions before access. If a future backend, AI API, sync, authentication, or document-conversion service is proposed, pause for a separate privacy/data-flow and threat-model decision before implementation.
 
 ## Research plan before making market claims
 
