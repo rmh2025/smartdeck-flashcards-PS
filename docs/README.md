@@ -6,10 +6,10 @@ This folder keeps evidence, operating baselines, and development decisions disco
 
 | Document | Purpose | Status |
 |---|---|---|
-| [`REFERENCE_LIBRARY.md`](REFERENCE_LIBRARY.md) | Source index for learning research, accessibility guidance, browser APIs, competitors, storage, and GitHub workflow. | Lychee 0.24.2 offline and online checks passed on 2026-11-16; final link scan covered 52 links and followed two redirects. |
+| [`REFERENCE_LIBRARY.md`](REFERENCE_LIBRARY.md) | Source index for learning research, accessibility guidance, browser APIs, competitors, storage, and GitHub workflow. | Last successful Lychee 0.24.2 offline and online scan was 2026-11-16; 52 links checked. Lychee is not installed in the current environment for a rerun. |
 | [`reports/PRODUCT_AND_MARKET_BASELINE.md`](reports/PRODUCT_AND_MARKET_BASELINE.md) | Competitive desk scan, target-market hypotheses, accessibility priorities, and research gaps. | Snapshot 2026-11-16; not market-size or user-validation research. |
-| [`reports/QUALITY_BASELINE.md`](reports/QUALITY_BASELINE.md) | Current feature, testing, accessibility, runtime, privacy, and release baselines. | Updated 2026-11-16 after final browser regression and release preparation; verify deployment status separately. |
-| [`reports/PROCESS_REVIEW_AND_WORKFLOW.md`](reports/PROCESS_REVIEW_AND_WORKFLOW.md) | Conversation-based SWOT and a repeatable, human/AI project workflow. | First retrospective 2026-11-16; revise after future project cycles. |
+| [`reports/QUALITY_BASELINE.md`](reports/QUALITY_BASELINE.md) | Current feature, testing, accessibility, runtime, privacy, and release baselines. | Updated 2026-11-17 after appearance/source-workflow follow-up; GitHub push and Pages deployment remain unverified. |
+| [`reports/PROCESS_REVIEW_AND_WORKFLOW.md`](reports/PROCESS_REVIEW_AND_WORKFLOW.md) | Conversation-based SWOT and a repeatable, human/AI project workflow. | First retrospective plus final-pass lessons, 2026-11-16; revise after future project cycles. |
 
 ## How to keep the reports useful
 

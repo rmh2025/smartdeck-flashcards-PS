@@ -53,10 +53,10 @@ Open `index.html` in a browser. Your decks are saved in that browser on this dev
 - Import and export a deck as JSON.
 - Save decks, study progress, and the last active deck in the browser.
 - Study in a full-height tabletop arena with a tactile flip card, quick rating controls, and collapsible deck, audio, and appearance drawers.
-- Use the default obsidian-and-brass tabletop or pick a PNG, JPEG, or WebP background image (up to 1.5 MB). Images stay in local browser storage and can be reset at any time.
+- Open **Appearance** in the top bar to choose one of four saved accent palettes or upload/reset a PNG, JPEG, or WebP background image (up to 1.5 MB). A dark overlay remains over photos for text readability; palettes are curated choices, not automatic image-color detection. Settings stay in local browser storage.
 - Adapt the play area to small screens, support keyboard navigation, show focus indicators, and honor reduced-motion preferences.
 
-SmartDeck does not scrape web pages or send pasted material to an AI service. Browser-only apps cannot reliably read arbitrary sites because of cross-origin restrictions, and a private AI API key must not be put in a public HTML file. You choose a source, paste material you may use, and can edit the resulting cards. JSON import/export also lets you bring in cards drafted with an AI assistant.
+SmartDeck does not scrape web pages or send pasted material to an AI service. Browser-only apps cannot reliably read arbitrary sites because of cross-origin restrictions, and a private AI API key must not be put in a public HTML file. You choose a source, paste material you may use, and can edit the resulting starter cards. The source form includes a selectable Copilot prompt for researching a topic and returning cited SmartDeck JSON; review the sources, then use **Deck tools → Import JSON**. For competitor research, ask for a dated comparison of public claims with official URLs and limitations—summarize rather than copying or scraping competitor content. JSON import/export also lets you bring in cards drafted with an AI assistant.
 
 Speech is optional and uses voices installed in the browser or operating system; available voices differ by device. The quiz does not automatically judge free-form answers: you reveal the model answer and rate yourself, so valid paraphrases are not incorrectly marked wrong.
 
@@ -77,9 +77,9 @@ The patterns are informed by product conventions and learning research, without 
 ## Topic and source workflow
 
 1. Choose a deck and select **From material**.
-2. Enter a topic and use **Search sources** to open general web, academic/government, PubMed, or MDN results. Review a result and copy its URL.
+2. Enter a topic and use **Search sources** to open general web, academic/government, PubMed, or MDN results. Review a result and copy its URL. The search opens a results page; it does not fetch or verify the source.
 3. Paste your permitted notes or source excerpt and the URL. SmartDeck splits the text into chunks of about 700 characters and creates editable prompt/answer cards. The prompt is a starter, not an AI-generated question, so improve it before studying.
-4. For richer question-and-answer cards, ask Copilot Chat to turn each source chunk into JSON cards, then use **Import JSON**. The accepted format is:
+4. For richer question-and-answer cards, open **Use Copilot Chat to make a source-backed deck** in the source form, select the example prompt, press Ctrl+C, and paste it into Copilot Chat with your topic and learner level. Review the sources and card content, then copy the returned JSON, close the form, and choose **Deck tools → Import JSON**. The accepted format is:
 
    ```json
    {

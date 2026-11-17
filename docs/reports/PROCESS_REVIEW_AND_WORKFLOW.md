@@ -36,6 +36,9 @@ The conversational record also shows early confusion about which text belongs in
 - Added searchable CSS and JavaScript section markers to the single-file app and updated the README's code map.
 - Ran Lychee 0.24.2 from a checksum-verified temporary download: offline local links and online links both passed after correcting an outdated Anki URL. Lychee remains optional and is not an app dependency or committed CI requirement.
 - Added a GitHub Pages workflow that publishes only the self-contained `index.html`; remote deployment must still be verified independently.
+- Added four saved accent palettes and made the appearance entry point more explicit; the optional photo background keeps its dark readability overlay.
+- Added an in-app Copilot prompt and JSON import instructions so sourced deck creation is discoverable without suggesting the browser app scrapes sites or sends notes to an AI service.
+- Added a research-to-operations traceability table connecting market/accessibility/learning signals to shipped controls, repeatable checks, and update triggers.
 - Kept market monitoring out of the running app. A static, dated desk scan is available now; continuous market collection would need a data source, server or service, privacy review, refresh policy, and a maintainer.
 - Recorded that the current target market is a hypothesis; no market-size or user-preference claims were fabricated.
 
@@ -45,6 +48,7 @@ The conversational record also shows early confusion about which text belongs in
 - Isolate and restore browser storage during UI testing. The final regression used temporary test data and restored the existing browser state afterward.
 - Make test expectations match the feature contract, not an assumption. For example, the material-to-card feature combines short adjacent paragraphs into one chunk; a test should validate chunking rules rather than assume one card per paragraph.
 - Distinguish application failures from test-harness failures. On a failed assertion, record the exact UI state and reproduce the behavior manually before changing product code.
+- Treat “I cannot find it” as a usability defect, not as user error. Verify the visible label and walk the real interaction path; documentation alone is not enough when an important control is hidden behind vague wording.
 - Plan release hosting with the initial requirements. GitHub Pages needs a successful workflow and a live-site check; a pushed commit or an expected URL alone is not proof that the app is published.
 - After testing, update every dated status claim together (QA matrix, report index, process notes, and release state) so old “not run” statements do not contradict newer evidence.
 

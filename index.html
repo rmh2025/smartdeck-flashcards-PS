@@ -17,6 +17,9 @@
       --accent: #d7b879;
       --accent-dark: #f2d89e;
       --accent-soft: #3a2d1d;
+      --accent-gradient-end: #bb9353;
+      --accent-border: #e4c98d;
+      --accent-contrast: #21180d;
       --green: #7ed5b9;
       --green-soft: #183a35;
       --red: #ff9aa1;
@@ -27,6 +30,30 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-synthesis: none;
       text-rendering: optimizeLegibility;
+    }
+    :root[data-theme="midnight"] {
+      --accent: #83b9ff;
+      --accent-dark: #d5e8ff;
+      --accent-soft: #1d3554;
+      --accent-gradient-end: #91b9ea;
+      --accent-border: #7596c0;
+      --accent-contrast: #15243a;
+    }
+    :root[data-theme="forest"] {
+      --accent: #75d1ad;
+      --accent-dark: #c6f2df;
+      --accent-soft: #193d34;
+      --accent-gradient-end: #83c4a4;
+      --accent-border: #75ae96;
+      --accent-contrast: #153329;
+    }
+    :root[data-theme="violet"] {
+      --accent: #c29aff;
+      --accent-dark: #eadbff;
+      --accent-soft: #38264d;
+      --accent-gradient-end: #b99bde;
+      --accent-border: #a68bc8;
+      --accent-contrast: #2a1c3b;
     }
 
     /* App shell, deck navigation, and shared controls */
@@ -81,7 +108,7 @@
       border-radius: 13px;
       color: #fff;
       border: 1px solid #74869e;
-      background: linear-gradient(145deg, #69502b, #21190f 55%, #d7b879);
+      background: linear-gradient(145deg, var(--accent-gradient-end), #21190f 55%, var(--accent));
       box-shadow: 0 7px 20px rgb(0 0 0 / 46%);
       font-size: 19px;
       font-weight: 800;
@@ -137,7 +164,7 @@
       text-align: left;
       transition: background .16s ease, color .16s ease, transform .16s ease;
     }
-    .deck-choice:hover { background: #302416; }
+    .deck-choice:hover { background: var(--accent-soft); }
     .deck-choice[aria-current="true"] { color: var(--accent-dark); background: var(--accent-soft); font-weight: 700; }
     .deck-symbol {
       display: grid;
@@ -181,11 +208,11 @@
       font-weight: 670;
       transition: background .16s ease, border-color .16s ease, transform .16s ease, box-shadow .16s ease;
     }
-    .button:hover:not(:disabled) { border-color: #a78b59; background: #302416; transform: translateY(-1px); }
+    .button:hover:not(:disabled) { border-color: var(--accent-border); background: var(--accent-soft); transform: translateY(-1px); }
     .button:active:not(:disabled) { transform: translateY(0); }
     .button:disabled { cursor: not-allowed; opacity: .48; }
-    .button-primary { border-color: #e4c98d; color: #21180d; background: linear-gradient(145deg, #f2d99e, #bb9353); box-shadow: 0 5px 16px rgb(134 92 33 / 25%); }
-    .button-primary:hover:not(:disabled) { border-color: #fff1ca; color: #130e08; background: linear-gradient(145deg, #fff0c8, #d4ae6c); }
+    .button-primary { border-color: var(--accent-border); color: var(--accent-contrast); background: linear-gradient(145deg, var(--accent-dark), var(--accent-gradient-end)); box-shadow: 0 5px 16px rgb(134 92 33 / 25%); }
+    .button-primary:hover:not(:disabled) { border-color: var(--accent-dark); color: var(--accent-contrast); background: linear-gradient(145deg, var(--accent-dark), var(--accent)); }
     .button-quiet { border-color: transparent; background: transparent; }
     .button-small { min-height: 34px; padding: 7px 10px; font-size: 12px; }
     .button-danger { color: var(--red); }
@@ -206,6 +233,7 @@
       color: var(--ink);
       background: #17120c;
     }
+    .theme-select { width: 100%; min-height: 42px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); background: #17120c; }
     .toolbar-group { display: flex; flex-wrap: wrap; gap: 8px; }
 
     /* Study arena: telemetry, card stage, and navigation */
@@ -229,10 +257,10 @@
       background: linear-gradient(90deg, #1d1811, #2b2114 50%, #17120c);
     }
     .study-mode { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; font-weight: 650; }
-    .mode-dot { width: 8px; height: 8px; border-radius: 50%; background: #e6c77e; box-shadow: 0 0 0 4px #49351e, 0 0 12px #d8a855; }
+    .mode-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-dark); box-shadow: 0 0 0 4px var(--accent-soft), 0 0 12px var(--accent); }
     .progress-copy { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
     .progress-track { height: 3px; background: #392d1e; }
-    .progress-fill { width: 0; height: 100%; background: linear-gradient(90deg, #8b6232, #f1d28c, #79c7a6); transition: width .25s ease; }
+    .progress-fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--accent-gradient-end), var(--accent-dark), #79c7a6); transition: width .25s ease; }
     .combo-meter {
       display: grid;
       width: 42px;
@@ -241,10 +269,10 @@
       padding: 3px;
       place-items: center;
       border-radius: 50%;
-      background: conic-gradient(#f2ce7e var(--combo-angle, 0deg), #57442b 0);
+      background: conic-gradient(var(--accent-dark) var(--combo-angle, 0deg), var(--accent-soft) 0);
       box-shadow: 0 0 14px rgb(225 177 84 / 20%);
     }
-    .combo-count { display: grid; width: 100%; height: 100%; place-items: center; border-radius: 50%; color: #f3d89f; background: #17120c; font-size: 8px; font-weight: 850; letter-spacing: .03em; text-align: center; }
+    .combo-count { display: grid; width: 100%; height: 100%; place-items: center; border-radius: 50%; color: var(--accent-dark); background: #17120c; font-size: 8px; font-weight: 850; letter-spacing: .03em; text-align: center; }
     .arena-board {
       display: grid;
       min-height: 0;
@@ -528,7 +556,12 @@
     .voice-dialog { width: min(480px, calc(100% - 24px)); }
     .board-dialog { width: min(520px, calc(100% - 24px)); padding-bottom: 20px; }
     .board-actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 18px 20px 12px; }
+    .board-theme-field { padding: 0 20px; }
     .board-dialog > .field-hint { padding: 0 20px; }
+    .source-help { margin-top: 15px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--accent-soft); }
+    .source-help summary { color: var(--accent-dark); cursor: pointer; font-size: 13px; font-weight: 700; }
+    .source-help p, .source-help li { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .source-help textarea { width: 100%; min-height: 155px; resize: vertical; padding: 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: #100d09; font: 11px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
     .deck-stack-button:focus-visible, .arena-nav:focus-visible, .card-audio-trigger:focus-visible { outline: 3px solid #f2d89e; outline-offset: 3px; }
 
     /* Responsive layout outside active play */
@@ -553,6 +586,7 @@
       .cards-dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
       .card-list { max-height: none; padding: 4px 14px 18px; }
       .board-actions { padding: 15px 16px 10px; }
+      .board-theme-field { padding: 0 16px; }
       .board-dialog > .field-hint { padding: 0 16px; }
       .app-header { min-height: 64px; }
       .app-layout { padding-right: 14px; padding-left: 14px; }
@@ -663,9 +697,9 @@
       </div>
     </div>
     <div class="header-actions">
-      <button class="button button-small" id="board-settings-button" type="button" aria-label="Board appearance">▧ Board</button>
+      <button class="button button-small" id="board-settings-button" type="button" aria-label="Theme and background settings">▧ Appearance</button>
       <button class="button button-small" id="voice-settings-button" type="button" aria-label="Voice settings">◖ Audio</button>
-      <button class="button button-small" id="tools-button" type="button" aria-label="Deck and study tools">☰ Tools</button>
+      <button class="button button-small" id="tools-button" type="button" aria-label="Deck and study tools">☰ Deck tools</button>
       <button class="button button-primary" id="new-deck-button" type="button" aria-label="New deck">
         <span aria-hidden="true">＋</span><span class="button-label">New deck</span>
       </button>
@@ -699,7 +733,7 @@
           <div class="toolbar-group">
             <button class="button" id="shuffle-button" type="button" aria-label="Shuffle all cards">⤨ Shuffle</button>
             <button class="button" id="study-due-button" type="button">Study due</button>
-            <button class="button" id="source-material-button" type="button">＋ From material</button>
+            <button class="button" id="source-material-button" type="button">＋ Create from sources</button>
             <label class="button" for="deck-import-input">Import JSON</label>
             <input class="sr-only" id="deck-import-input" type="file" accept="application/json,.json" aria-label="Choose a SmartDeck deck JSON file">
             <button class="button" id="export-deck-button" type="button">Export JSON</button>
@@ -874,17 +908,27 @@
   <dialog class="sheet-dialog board-dialog" id="board-dialog" aria-labelledby="board-dialog-title">
     <div class="sheet-header">
       <div>
-        <p class="eyebrow">Tabletop appearance</p>
-        <h2 id="board-dialog-title">Choose your game board</h2>
+        <p class="eyebrow">Theme and tabletop</p>
+        <h2 id="board-dialog-title">Personalize your board</h2>
       </div>
-      <button class="button icon-button button-quiet" type="button" data-close-dialog="board-dialog" aria-label="Close board appearance">×</button>
+      <button class="button icon-button button-quiet" type="button" data-close-dialog="board-dialog" aria-label="Close appearance settings">×</button>
+    </div>
+    <div class="field board-theme-field">
+      <label for="theme-select">Accent palette</label>
+      <select class="theme-select" id="theme-select">
+        <option value="obsidian">Obsidian and brass</option>
+        <option value="midnight">Midnight and blue</option>
+        <option value="forest">Forest and mint</option>
+        <option value="violet">Violet and silver</option>
+      </select>
+      <p class="field-hint">The palette changes accents and controls. A dark overlay stays over photos to help keep text readable.</p>
     </div>
     <div class="board-actions">
       <button class="button" id="choose-background-button" type="button" aria-label="Choose a custom background image">▧ Choose background</button>
       <input id="background-image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Choose a PNG, JPEG, or WebP background image">
-      <button class="button button-small" id="remove-background-button" type="button" hidden>Reset background</button>
+      <button class="button button-small" id="remove-background-button" type="button" hidden>Reset photo</button>
     </div>
-    <p class="field-hint">Custom PNG, JPEG, or WebP images stay in this browser on this device.</p>
+    <p class="field-hint">Choose an accent palette above, then add a PNG, JPEG, or WebP tabletop photo (up to 1.5 MB). Both settings stay in this browser on this device.</p>
   </dialog>
 
   <dialog id="deck-dialog" aria-labelledby="deck-dialog-title">
@@ -942,8 +986,8 @@
     <form class="dialog-form" id="material-form">
       <div class="dialog-heading">
         <div>
-          <h2 id="material-dialog-title">Make cards from your material</h2>
-          <p>Choose a topic, find a source, then paste material you are allowed to use.</p>
+          <h2 id="material-dialog-title">Build cards from sources</h2>
+          <p>Search and paste your notes, or ask Copilot Chat to research a topic and return an importable deck.</p>
         </div>
         <button class="button icon-button button-quiet" type="button" data-close-dialog="material-dialog" aria-label="Close source material form">×</button>
       </div>
@@ -962,7 +1006,7 @@
           </select>
           <button class="button" id="search-sources-button" type="button">Search sources</button>
         </div>
-        <p class="field-hint">Search opens results in your browser; review sources yourself. This one-file app does not fetch or verify web pages.</p>
+        <p class="field-hint">Search opens results in your browser; review sources yourself. This one-file app does not fetch, scrape, or verify web pages.</p>
       </div>
       <div class="field">
         <label for="material-source-url">Source URL (optional)</label>
@@ -973,6 +1017,15 @@
         <textarea id="material-text-input" maxlength="50000" required placeholder="Paste text from a source you are allowed to use. Long material is split into smaller editable cards."></textarea>
         <p class="field-hint">Up to 50,000 characters. Text is split at paragraph and sentence boundaries into chunks of about 700 characters; each chunk becomes an editable prompt and answer.</p>
       </div>
+      <details class="source-help">
+        <summary>Use Copilot Chat to make a source-backed deck</summary>
+        <p>Select the example below, press Ctrl+C, and paste it into Copilot Chat. Replace the bracketed details, review every source and claim, then copy the returned JSON. Close this form and choose <strong>Deck tools → Import JSON</strong>.</p>
+        <label for="source-deck-prompt">Prompt to copy into Copilot Chat</label>
+        <textarea id="source-deck-prompt" readonly rows="8">Research [TOPIC] for [LEARNER LEVEL] using reputable public sources. Prefer primary, official, educational, government, or peer-reviewed sources. Create 8-12 concise, original question-and-answer flashcards. Do not copy passages. Put a sourceUrl on every card and note uncertainty rather than guessing. Return only valid SmartDeck JSON in this shape:
+{"format":"smartdeck-deck","version":1,"name":"[Deck name]","cards":[{"front":"...","back":"...","sourceUrl":"https://..."}]}</textarea>
+        <button class="button button-small" id="select-source-prompt-button" type="button">Select prompt text</button>
+        <p>For competitor research, ask for a dated comparison of publicly documented features with official product/help URLs and limitations. Summarize; do not scrape or reproduce competitor content. Keep those findings in the dated market report rather than treating marketing claims as learning evidence.</p>
+      </details>
       <p class="dialog-error" id="material-form-error" aria-live="polite"></p>
       <div class="dialog-actions">
         <button class="button" type="button" data-close-dialog="material-dialog">Cancel</button>
@@ -1009,6 +1062,7 @@
         chooseBackground: document.getElementById("choose-background-button"),
         backgroundInput: document.getElementById("background-image-input"),
         removeBackground: document.getElementById("remove-background-button"),
+        themeSelect: document.getElementById("theme-select"),
         boardSettings: document.getElementById("board-settings-button"),
         voiceSettings: document.getElementById("voice-settings-button"),
         toolsButton: document.getElementById("tools-button"),
@@ -1073,6 +1127,8 @@
         materialFormError: document.getElementById("material-form-error"),
         sourceSearchType: document.getElementById("source-search-type"),
         searchSources: document.getElementById("search-sources-button"),
+        sourceDeckPrompt: document.getElementById("source-deck-prompt"),
+        selectSourcePrompt: document.getElementById("select-source-prompt-button"),
         studyToolbar: document.getElementById("study-toolbar"),
         studyPanel: document.querySelector(".study-panel"),
         cardsDetails: document.getElementById("cards-details"),
@@ -1173,6 +1229,7 @@
           version: 1,
           activeDeckId: sampleDeckId,
           decks: [structuredCloneSafe(sampleDeck)],
+          theme: "obsidian",
           backgroundImage: "",
           voicePreferences: { reader: "", hosts: { Nova: "", Atlas: "", Quill: "" } }
         };
@@ -1242,7 +1299,8 @@
           });
         }
         const activeDeckId = decks.some((deck) => deck.id === value.activeDeckId) ? value.activeDeckId : (decks[0] ? decks[0].id : null);
-        return { version: 1, activeDeckId, decks, backgroundImage, voicePreferences };
+        const theme = ["obsidian", "midnight", "forest", "violet"].includes(value.theme) ? value.theme : "obsidian";
+        return { version: 1, activeDeckId, decks, theme, backgroundImage, voicePreferences };
       }
 
       function loadState() {
@@ -1407,6 +1465,12 @@
         elements.removeBackground.hidden = !state.backgroundImage;
       }
 
+      function applyAppearance() {
+        document.documentElement.dataset.theme = state.theme;
+        elements.themeSelect.value = state.theme;
+        applyBackground();
+      }
+
       function loadBackgroundImage(file) {
         if (!file) return;
         const allowedTypes = ["image/png", "image/jpeg", "image/webp"];
@@ -1435,7 +1499,7 @@
             }
             const previousImage = state.backgroundImage;
             state.backgroundImage = imageData;
-            applyBackground();
+            applyAppearance();
             if (!persist()) {
               state.backgroundImage = previousImage;
               applyBackground();
@@ -1647,7 +1711,7 @@
 
       function render() {
         const deck = activeDeck();
-        applyBackground();
+        applyAppearance();
         renderDecks();
         elements.deckTitle.textContent = deck ? deck.name : "Your study space";
         const cardCorrectTotal = deck ? deck.cards.reduce((total, card) => total + (card.correctCount || 0), 0) : 0;
@@ -2324,6 +2388,17 @@
 
       // One-time event binding and application startup.
       elements.boardSettings.addEventListener("click", () => elements.boardDialog.showModal());
+      elements.themeSelect.addEventListener("change", () => {
+        const previousTheme = state.theme;
+        state.theme = elements.themeSelect.value;
+        applyAppearance();
+        if (!persist()) {
+          state.theme = previousTheme;
+          applyAppearance();
+          return;
+        }
+        announce(`Applied the ${elements.themeSelect.options[elements.themeSelect.selectedIndex].text} palette.`);
+      });
       elements.voiceSettings.addEventListener("click", () => elements.voiceDialog.showModal());
       elements.toolsButton.addEventListener("click", () => elements.toolsDialog.showModal());
       elements.cardsDrawerButton.addEventListener("click", () => elements.cardsDialog.showModal());
@@ -2356,6 +2431,11 @@
       elements.deleteDeck.addEventListener("click", deleteDeck);
       elements.newCard.addEventListener("click", () => openCardDialog());
       elements.sourceMaterial.addEventListener("click", openMaterialDialog);
+      elements.selectSourcePrompt.addEventListener("click", () => {
+        elements.sourceDeckPrompt.focus();
+        elements.sourceDeckPrompt.select();
+        announce("Prompt selected. Press Ctrl+C to copy it into Copilot Chat.");
+      });
       elements.exportDeck.addEventListener("click", exportActiveDeck);
       elements.importDeck.addEventListener("change", () => {
         const file = elements.importDeck.files && elements.importDeck.files[0];
