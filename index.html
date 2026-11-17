@@ -3,57 +3,167 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090806">
+  <meta name="theme-color" content="#07111f">
   <title>SmartDeck — Smarter deck. Smarter you.</title>
   <style>
-    /* Theme tokens and global defaults */
+    /* Full visual themes: colors, typography, spacing, and shape */
     :root {
       color-scheme: dark;
-      --ink: #f5ead7;
-      --muted: #c0ae90;
-      --line: #62503a;
-      --paper: #1b1712;
-      --canvas: #090806;
-      --accent: #d7b879;
-      --accent-dark: #f2d89e;
-      --accent-soft: #3a2d1d;
-      --accent-gradient-end: #bb9353;
-      --accent-border: #e4c98d;
-      --accent-contrast: #21180d;
-      --green: #7ed5b9;
-      --green-soft: #183a35;
-      --red: #ff9aa1;
-      --red-soft: #43262e;
-      --amber: #e8bd6b;
-      --amber-soft: #44331b;
+      --ink: #e8f4ff;
+      --muted: #a7bdd3;
+      --line: rgb(126 174 222 / 32%);
+      --paper: rgb(9 20 36 / 83%);
+      --canvas: #07111f;
+      --accent: #56d4ff;
+      --accent-dark: #c5f3ff;
+      --accent-soft: rgb(36 113 165 / 32%);
+      --accent-gradient-end: #68aaff;
+      --accent-border: #5bc4ec;
+      --accent-contrast: #061625;
+      --green: #83e0ba;
+      --green-soft: #153a35;
+      --red: #ff9da7;
+      --red-soft: #482530;
+      --amber: #ffd26b;
+      --amber-soft: #42351d;
       --shadow: 0 20px 52px rgb(0 0 0 / 38%);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-display: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --control-radius: 14px;
+      --panel-radius: 24px;
+      --card-radius: 28px;
+      --layout-gap: clamp(20px, 4vw, 48px);
+      --control-gap: 9px;
+      --button-padding: 9px 14px;
+      --button-weight: 670;
+      --focus-ring: #b6edff;
+      --wallpaper-wash: linear-gradient(125deg, rgb(4 10 20 / 22%), rgb(3 14 29 / 30%));
+      --default-wallpaper: radial-gradient(ellipse at 50% 32%, rgb(33 91 142 / 40%), transparent 36rem), #07111f;
+      --header-surface: rgb(4 13 25 / 76%);
+      --panel-surface: rgb(7 17 31 / 78%);
+      --panel-gradient: linear-gradient(145deg, rgb(11 25 44 / 84%), rgb(5 12 23 / 82%));
+      --stage-surface: radial-gradient(ellipse at 50% 38%, rgb(42 119 177 / 20%), transparent 64%), rgb(5 13 25 / 30%);
+      --card-front-surface: linear-gradient(145deg, rgb(20 43 68 / 94%), rgb(7 18 32 / 96%) 72%);
+      --card-back-surface: linear-gradient(145deg, rgb(14 40 61 / 96%), rgb(6 17 31 / 97%) 72%);
+      --surface-shadow: 0 20px 48px rgb(0 0 0 / 34%);
+      font-family: var(--font-body);
       font-synthesis: none;
       text-rendering: optimizeLegibility;
     }
-    :root[data-theme="midnight"] {
-      --accent: #83b9ff;
-      --accent-dark: #d5e8ff;
-      --accent-soft: #1d3554;
-      --accent-gradient-end: #91b9ea;
-      --accent-border: #7596c0;
-      --accent-contrast: #15243a;
+    :root[data-theme="pizza"] {
+      color-scheme: light;
+      --ink: #34231f;
+      --muted: #725850;
+      --line: rgb(147 70 48 / 25%);
+      --paper: rgb(255 249 237 / 93%);
+      --canvas: #f8ead8;
+      --accent: #c9342b;
+      --accent-dark: #fff0c1;
+      --accent-soft: #fbe0d5;
+      --accent-gradient-end: #f3bd3e;
+      --accent-border: #b8332a;
+      --accent-contrast: #32140f;
+      --green: #26734f;
+      --green-soft: #e0f2e7;
+      --red: #a9262d;
+      --red-soft: #fae0df;
+      --amber: #795300;
+      --amber-soft: #fff0c0;
+      --font-display: Georgia, "Times New Roman", serif;
+      --control-radius: 18px;
+      --panel-radius: 28px;
+      --card-radius: 25px;
+      --layout-gap: clamp(14px, 2.5vw, 26px);
+      --control-gap: 12px;
+      --button-padding: 10px 16px;
+      --button-weight: 720;
+      --focus-ring: #70251c;
+      --wallpaper-wash: linear-gradient(125deg, rgb(255 247 231 / 10%), rgb(255 242 219 / 14%));
+      --default-wallpaper: radial-gradient(ellipse at 14% 20%, rgb(199 52 43 / 17%), transparent 22rem), radial-gradient(ellipse at 82% 78%, rgb(239 188 58 / 27%), transparent 26rem), #f7e8d5;
+      --header-surface: rgb(255 249 238 / 90%);
+      --panel-surface: rgb(255 249 237 / 88%);
+      --panel-gradient: linear-gradient(145deg, rgb(255 252 244 / 95%), rgb(249 235 215 / 91%));
+      --stage-surface: radial-gradient(ellipse at 18% 25%, rgb(196 52 42 / 10%), transparent 45%), radial-gradient(ellipse at 82% 75%, rgb(240 188 54 / 16%), transparent 48%), rgb(255 248 234 / 25%);
+      --card-front-surface: linear-gradient(145deg, #fffdf6, #fff3da 78%);
+      --card-back-surface: repeating-linear-gradient(45deg, transparent 0 12px, rgb(181 58 43 / 5%) 12px 13px), linear-gradient(145deg, #fff8e9, #ffedc8 78%);
+      --surface-shadow: 0 18px 42px rgb(96 46 27 / 17%);
     }
-    :root[data-theme="forest"] {
-      --accent: #75d1ad;
-      --accent-dark: #c6f2df;
-      --accent-soft: #193d34;
-      --accent-gradient-end: #83c4a4;
-      --accent-border: #75ae96;
-      --accent-contrast: #153329;
+    :root[data-theme="paper"] {
+      color-scheme: light;
+      --ink: #202a3a;
+      --muted: #58677d;
+      --line: rgb(63 86 119 / 23%);
+      --paper: rgb(255 255 255 / 94%);
+      --canvas: #eaf0f7;
+      --accent: #315eb8;
+      --accent-dark: #e4edff;
+      --accent-soft: #e0e9fb;
+      --accent-gradient-end: #8eb3f0;
+      --accent-border: #315eb8;
+      --accent-contrast: #14264b;
+      --green: #26734f;
+      --green-soft: #e1f1e8;
+      --red: #a5323a;
+      --red-soft: #f8e4e6;
+      --amber: #815d12;
+      --amber-soft: #fbf0d7;
+      --font-body: "Segoe UI", system-ui, sans-serif;
+      --font-display: Georgia, "Times New Roman", serif;
+      --control-radius: 8px;
+      --panel-radius: 16px;
+      --card-radius: 14px;
+      --layout-gap: clamp(28px, 5vw, 60px);
+      --control-gap: 12px;
+      --button-padding: 10px 15px;
+      --button-weight: 620;
+      --focus-ring: #174b9b;
+      --wallpaper-wash: linear-gradient(125deg, rgb(236 243 251 / 14%), rgb(233 239 248 / 22%));
+      --default-wallpaper: radial-gradient(ellipse at 50% 22%, rgb(77 118 183 / 14%), transparent 35rem), #eaf0f7;
+      --header-surface: rgb(255 255 255 / 86%);
+      --panel-surface: rgb(255 255 255 / 89%);
+      --panel-gradient: linear-gradient(145deg, rgb(255 255 255 / 95%), rgb(241 246 252 / 93%));
+      --stage-surface: linear-gradient(135deg, rgb(210 223 241 / 35%), rgb(248 250 253 / 30%));
+      --card-front-surface: linear-gradient(145deg, #fff, #f3f7fd);
+      --card-back-surface: repeating-linear-gradient(0deg, transparent 0 18px, rgb(49 94 184 / 5%) 18px 19px), #f5f8fd;
+      --surface-shadow: 0 18px 40px rgb(38 57 84 / 13%);
     }
-    :root[data-theme="violet"] {
-      --accent: #c29aff;
-      --accent-dark: #eadbff;
-      --accent-soft: #38264d;
-      --accent-gradient-end: #b99bde;
-      --accent-border: #a68bc8;
-      --accent-contrast: #2a1c3b;
+    :root[data-theme="arcade"] {
+      --ink: #f2f4ff;
+      --muted: #b2b6d2;
+      --line: rgb(151 143 224 / 36%);
+      --paper: rgb(18 17 42 / 91%);
+      --canvas: #0b0a19;
+      --accent: #c1ff4a;
+      --accent-dark: #edffb9;
+      --accent-soft: rgb(105 76 189 / 28%);
+      --accent-gradient-end: #49e8ff;
+      --accent-border: #a8ed55;
+      --accent-contrast: #171a13;
+      --green: #a8ff63;
+      --green-soft: #223b27;
+      --red: #ff819f;
+      --red-soft: #4a233d;
+      --amber: #ffd16b;
+      --amber-soft: #45301d;
+      --font-body: "Cascadia Code", "Courier New", monospace;
+      --font-display: "Arial Black", "Segoe UI", sans-serif;
+      --control-radius: 5px;
+      --panel-radius: 10px;
+      --card-radius: 12px;
+      --layout-gap: clamp(14px, 2.5vw, 28px);
+      --control-gap: 7px;
+      --button-padding: 8px 12px;
+      --button-weight: 800;
+      --focus-ring: #e3ff70;
+      --wallpaper-wash: linear-gradient(125deg, rgb(11 8 27 / 23%), rgb(13 7 28 / 31%));
+      --default-wallpaper: radial-gradient(circle at 18% 25%, rgb(182 45 255 / 19%), transparent 20rem), radial-gradient(circle at 82% 72%, rgb(43 218 255 / 16%), transparent 23rem), #0b0a19;
+      --header-surface: rgb(13 11 31 / 83%);
+      --panel-surface: rgb(17 15 39 / 86%);
+      --panel-gradient: linear-gradient(145deg, rgb(24 20 54 / 92%), rgb(11 10 27 / 93%));
+      --stage-surface: radial-gradient(ellipse at 50% 35%, rgb(134 68 239 / 18%), transparent 62%), rgb(10 9 25 / 26%);
+      --card-front-surface: linear-gradient(145deg, rgb(35 27 74 / 97%), rgb(13 12 35 / 98%) 76%);
+      --card-back-surface: repeating-linear-gradient(135deg, transparent 0 11px, rgb(193 255 74 / 7%) 11px 12px), linear-gradient(145deg, rgb(29 24 65 / 98%), rgb(11 11 31 / 98%));
+      --surface-shadow: 0 18px 44px rgb(0 0 0 / 48%);
     }
 
     /* App shell, deck navigation, and shared controls */
@@ -66,20 +176,17 @@
       margin: 0;
       color: var(--ink);
       background-color: var(--canvas);
-      background-image:
-        linear-gradient(125deg, rgb(12 9 6 / 84%), rgb(25 17 10 / 78%)),
-        var(--user-wallpaper, radial-gradient(ellipse at 50% 35%, rgb(86 59 29 / 54%), transparent 34rem)),
-        repeating-linear-gradient(135deg, rgb(235 198 127 / 2%) 0 1px, transparent 1px 5px),
-        radial-gradient(ellipse at 5% 82%, rgb(57 38 20 / 44%), transparent 30rem);
+      background-image: var(--wallpaper-wash), var(--user-wallpaper, var(--default-wallpaper));
       background-position: center;
       background-size: cover;
       background-attachment: fixed;
+      font-family: var(--font-body);
     }
 
     button, input, textarea { font: inherit; }
     button { color: inherit; }
     button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible {
-      outline: 3px solid #d7e5f7;
+      outline: 3px solid var(--focus-ring);
       outline-offset: 3px;
     }
 
@@ -684,6 +791,122 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
+
+    /* Theme gallery and the visual systems that make each choice distinct */
+    h1, h2, h3, .brand-name { font-family: var(--font-display); }
+    .app-header { border-color: var(--line); background: var(--header-surface); backdrop-filter: blur(18px) saturate(1.2); }
+    .app-layout { gap: var(--layout-gap); }
+    .sidebar, .study-panel, .challenge-panel { border-color: var(--line); border-radius: var(--panel-radius); background: var(--panel-gradient); box-shadow: var(--surface-shadow); backdrop-filter: blur(14px) saturate(1.12); }
+    .study-topline, .rating-controls { border-color: var(--line); background: var(--panel-surface); }
+    .arena-board { background: var(--stage-surface); }
+    .study-stage { background: transparent; }
+    .study-stats { border-color: var(--line); color: var(--ink); background: var(--panel-surface); }
+    .combo-count { color: var(--accent-dark); background: var(--paper); }
+    .button { padding: var(--button-padding); border-radius: var(--control-radius); border-color: var(--line); font-weight: var(--button-weight); }
+    .button-primary { border-color: var(--accent-border); box-shadow: 0 5px 16px rgb(0 0 0 / 19%); }
+    .rating-controls { gap: var(--control-gap); }
+    .rating-btn { border-radius: var(--control-radius); }
+    .flashcard, .card-face { border-radius: var(--card-radius); }
+    .card-face { border-color: var(--line); color: var(--ink); background: var(--card-front-surface); box-shadow: var(--surface-shadow), inset 0 1px 0 rgb(255 255 255 / 24%); }
+    .card-back { background: var(--card-back-surface); }
+    .card-label { color: var(--accent); }
+    .card-audio-trigger { border-color: var(--accent-border); color: var(--accent); background: var(--paper); }
+    .card-audio-trigger:hover { color: var(--ink); background: var(--accent-soft); }
+    .pile-gem { border-color: var(--line); border-radius: var(--control-radius); color: var(--ink); background: var(--panel-surface); box-shadow: var(--surface-shadow); }
+    .pile-value { color: var(--ink); }
+    .gem-icon { color: var(--accent); }
+    .arena-nav { border-color: var(--line); border-radius: var(--control-radius); color: var(--accent); background: var(--panel-surface); box-shadow: 0 4px 0 rgb(0 0 0 / 22%); }
+    .deck-stack-button { border-color: var(--line); border-radius: var(--control-radius); color: var(--ink); background: var(--panel-surface); box-shadow: 0 4px 0 rgb(0 0 0 / 20%); }
+    .deck-stack-button:hover { border-color: var(--accent-border); background: var(--accent-soft); }
+    .card-row, .progression-card, .challenge-model-answer, .challenge-reward, .achievement-note { border-color: var(--line); border-radius: var(--control-radius); color: var(--ink); background: var(--paper); }
+    .card-row-level { color: var(--ink); background: var(--accent-soft); }
+    .card-row-source a { color: var(--accent); }
+    .empty-list { border-color: var(--line); color: var(--muted); background: var(--paper); }
+    dialog { border-color: var(--line); border-radius: var(--panel-radius); color: var(--ink); background: var(--panel-gradient); }
+    dialog::backdrop { background: rgb(3 7 13 / 56%); backdrop-filter: blur(5px); }
+    .sheet-dialog { border-color: var(--line); background: var(--panel-gradient); }
+    .sheet-header { border-color: var(--line); }
+    .field input, .field textarea, .voice-setting-fields select, .search-input {
+      border-color: var(--line);
+      border-radius: var(--control-radius);
+      color: var(--ink);
+      background: var(--paper);
+    }
+    .source-help { border-color: var(--line); border-radius: var(--control-radius); background: var(--accent-soft); }
+    .source-help textarea { border-color: var(--line); border-radius: var(--control-radius); color: var(--ink); background: var(--paper); }
+    .theme-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0 20px; }
+    .theme-choice {
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
+      align-items: center;
+      gap: 11px;
+      min-height: 76px;
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--control-radius);
+      color: var(--ink);
+      background: var(--paper);
+      cursor: pointer;
+      text-align: left;
+    }
+    .theme-choice[aria-pressed="true"] { border: 2px solid var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .theme-choice:hover { border-color: var(--accent-border); }
+    .theme-swatch { display: flex; height: 48px; align-items: end; gap: 4px; padding: 5px; border: 1px solid rgb(127 147 170 / 40%); border-radius: 9px; background: var(--swatch-base); }
+    .theme-swatch i { display: block; width: 12px; height: 24px; border-radius: 5px; background: var(--swatch-accent); }
+    .theme-swatch i:nth-child(2) { height: 18px; background: var(--swatch-secondary); }
+    .theme-swatch i:nth-child(3) { height: 13px; background: var(--swatch-paper); }
+    .theme-choice-copy { display: grid; gap: 4px; }
+    .theme-choice-copy strong { font-family: var(--font-display); font-size: 13px; }
+    .theme-choice-copy small { color: var(--muted); font-size: 10px; line-height: 1.35; }
+    .theme-choice[data-theme-choice="tech"] { --swatch-base: #081426; --swatch-accent: #57d5ff; --swatch-secondary: #568fff; --swatch-paper: #d7edff; }
+    .theme-choice[data-theme-choice="pizza"] { --swatch-base: #fff3dc; --swatch-accent: #c9342b; --swatch-secondary: #f3bd3e; --swatch-paper: #398258; }
+    .theme-choice[data-theme-choice="paper"] { --swatch-base: #edf2fa; --swatch-accent: #315eb8; --swatch-secondary: #8eb3f0; --swatch-paper: #ffffff; }
+    .theme-choice[data-theme-choice="arcade"] { --swatch-base: #11102a; --swatch-accent: #c1ff4a; --swatch-secondary: #49e8ff; --swatch-paper: #b57cff; }
+    .field-label { margin: 0; font-size: 13px; font-weight: 700; }
+    .board-dialog .field-hint { padding: 0 20px; }
+    .board-actions { padding-top: 15px; }
+    .material-dialog { width: min(840px, calc(100% - 24px)); }
+    .material-dialog .dialog-form { max-height: min(90dvh, 880px); overflow-y: auto; }
+    .material-intro { margin: -8px 0 16px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .material-link-row, .material-file-row { display: flex; flex-wrap: wrap; align-items: end; gap: 8px; }
+    .material-link-row .field { min-width: 220px; flex: 1; }
+    .material-file-row { margin-top: 10px; }
+    .material-file-row .field-hint { flex: 1 1 230px; }
+    .material-consent { display: flex; align-items: flex-start; gap: 9px; margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .material-consent input { flex: 0 0 auto; margin-top: 3px; accent-color: var(--accent); }
+    .material-text-input { min-height: 190px !important; }
+    .material-preview { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .material-preview h3 { margin: 0 0 5px; font-size: 18px; }
+    .material-preview-note { margin: 0 0 12px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .material-preview-list { display: grid; max-height: 45vh; gap: 9px; overflow-y: auto; padding: 2px; }
+    .material-preview-card { display: grid; gap: 8px; padding: 11px; border: 1px solid var(--line); border-radius: var(--control-radius); background: var(--paper); }
+    .material-preview-card label { display: grid; gap: 4px; color: var(--muted); font-size: 11px; font-weight: 700; }
+    .material-preview-card textarea { min-height: 56px; padding: 8px; border: 1px solid var(--line); border-radius: calc(var(--control-radius) * .75); color: var(--ink); background: var(--canvas); font-size: 12px; }
+    .material-preview-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 13px; }
+    .material-status { min-height: 20px; margin-top: 8px; color: var(--muted); font-size: 12px; }
+    .material-builder-launch { display: flex; flex-wrap: wrap; gap: 8px; }
+    .material-builder-launch .button-primary { margin-right: auto; }
+    .card-dialog .dialog-heading p { max-width: 36ch; }
+    :root[data-theme="pizza"] .brand-mark { font-family: Georgia, serif; }
+    :root[data-theme="pizza"] .app-layout { grid-template-columns: minmax(0, 1fr); }
+    :root[data-theme="pizza"] .sidebar { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: center; gap: 14px; padding: 12px 16px; }
+    :root[data-theme="pizza"] .sidebar-heading { margin: 0; }
+    :root[data-theme="pizza"] .deck-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    :root[data-theme="pizza"] .deck-choice[aria-current="true"] .deck-symbol { background: var(--accent-soft); }
+    :root[data-theme="arcade"] .app-header { border-bottom-width: 2px; }
+    :root[data-theme="arcade"] .study-panel { border-width: 2px; }
+    :root[data-theme="arcade"] .button-primary { text-shadow: none; box-shadow: 0 0 18px rgb(193 255 74 / 17%); }
+    :root[data-theme="paper"] .study-panel { border-width: 2px; }
+    @media (max-width: 540px) {
+      .theme-choice-grid { gap: 7px; padding: 0 16px; }
+      .theme-choice { grid-template-columns: 44px minmax(0, 1fr); gap: 7px; min-height: 68px; padding: 6px; }
+      .theme-swatch { height: 42px; }
+      .theme-choice-copy strong { font-size: 11px; }
+      .theme-choice-copy small { font-size: 9px; }
+      .material-link-row .field { min-width: 100%; }
+      .material-dialog .dialog-form { max-height: 91dvh; padding: 17px; }
+      .material-preview-list { max-height: 34vh; }
+    }
   </style>
 </head>
 <body class="is-playing">
@@ -733,7 +956,7 @@
           <div class="toolbar-group">
             <button class="button" id="shuffle-button" type="button" aria-label="Shuffle all cards">⤨ Shuffle</button>
             <button class="button" id="study-due-button" type="button">Study due</button>
-            <button class="button" id="source-material-button" type="button">＋ Create from sources</button>
+            <button class="button" id="source-material-button" type="button">＋ Build cards from material</button>
             <label class="button" for="deck-import-input">Import JSON</label>
             <input class="sr-only" id="deck-import-input" type="file" accept="application/json,.json" aria-label="Choose a SmartDeck deck JSON file">
             <button class="button" id="export-deck-button" type="button">Export JSON</button>
@@ -876,7 +1099,10 @@
         <h2 id="cards-dialog-title">Cards in this deck <span class="summary-meta" id="card-list-count">0 cards</span></h2>
       </div>
       <div class="sheet-actions">
-        <button class="button button-primary" id="drawer-new-card-button" type="button">＋ New card</button>
+        <div class="material-builder-launch">
+          <button class="button button-primary" id="drawer-build-material-button" type="button">＋ Build from text or link</button>
+          <button class="button" id="drawer-new-card-button" type="button">＋ One card</button>
+        </div>
         <button class="button icon-button button-quiet" type="button" data-close-dialog="cards-dialog" aria-label="Close deck stack">×</button>
       </div>
     </div>
@@ -914,21 +1140,32 @@
       <button class="button icon-button button-quiet" type="button" data-close-dialog="board-dialog" aria-label="Close appearance settings">×</button>
     </div>
     <div class="field board-theme-field">
-      <label for="theme-select">Accent palette</label>
-      <select class="theme-select" id="theme-select">
-        <option value="obsidian">Obsidian and brass</option>
-        <option value="midnight">Midnight and blue</option>
-        <option value="forest">Forest and mint</option>
-        <option value="violet">Violet and silver</option>
-      </select>
-      <p class="field-hint">The palette changes accents and controls. A dark overlay stays over photos to help keep text readable.</p>
+      <p class="field-label">Choose a complete interface theme</p>
+    </div>
+    <div class="theme-choice-grid" role="group" aria-label="Choose a complete SmartDeck theme">
+      <button class="theme-choice" type="button" data-theme-choice="tech" aria-pressed="false">
+        <span class="theme-swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="theme-choice-copy"><strong>Tech Glass</strong><small>Transparent navy, blue glow, rounded glass panels</small></span>
+      </button>
+      <button class="theme-choice" type="button" data-theme-choice="pizza" aria-pressed="false">
+        <span class="theme-swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="theme-choice-copy"><strong>Sunday Sauce</strong><small>Tomato red, mozzarella gold, basil, cozy serif type</small></span>
+      </button>
+      <button class="theme-choice" type="button" data-theme-choice="paper" aria-pressed="false">
+        <span class="theme-swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="theme-choice-copy"><strong>Paper Studio</strong><small>Airy blue-white, bookish type, crisp square controls</small></span>
+      </button>
+      <button class="theme-choice" type="button" data-theme-choice="arcade" aria-pressed="false">
+        <span class="theme-swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="theme-choice-copy"><strong>Arcade Signal</strong><small>Neon lime and cyan, compact mono type, angular keys</small></span>
+      </button>
     </div>
     <div class="board-actions">
       <button class="button" id="choose-background-button" type="button" aria-label="Choose a custom background image">▧ Choose background</button>
       <input id="background-image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden aria-label="Choose a PNG, JPEG, or WebP background image">
       <button class="button button-small" id="remove-background-button" type="button" hidden>Reset photo</button>
     </div>
-    <p class="field-hint">Choose an accent palette above, then add a PNG, JPEG, or WebP tabletop photo (up to 1.5 MB). Both settings stay in this browser on this device.</p>
+    <p class="field-hint">Themes change color, type, button shape, spacing, and layout. Your background photo stays visible through translucent surfaces. PNG, JPEG, or WebP up to 1.5 MB; settings stay in this browser.</p>
   </dialog>
 
   <dialog id="deck-dialog" aria-labelledby="deck-dialog-title">
@@ -957,17 +1194,17 @@
       <div class="dialog-heading">
         <div>
           <h2 id="card-dialog-title">Create a flashcard</h2>
-          <p>Write a prompt on the front and its answer on the back.</p>
+          <p>This is the optional one-card editor. Use the material builder for a whole set.</p>
         </div>
         <button class="button icon-button button-quiet" type="button" data-close-dialog="card-dialog" aria-label="Close flashcard form">×</button>
       </div>
       <div class="field">
-        <label for="card-front-input">Front (question or prompt)</label>
-        <textarea id="card-front-input" name="front" maxlength="500" required placeholder="What are you trying to remember?"></textarea>
+        <label for="card-front-input">Cue or question</label>
+        <textarea id="card-front-input" name="front" maxlength="500" required placeholder="What should you recall?"></textarea>
       </div>
       <div class="field">
-        <label for="card-back-input">Back (answer)</label>
-        <textarea id="card-back-input" name="back" maxlength="1000" required placeholder="Write the answer here"></textarea>
+        <label for="card-back-input">Answer to learn</label>
+        <textarea id="card-back-input" name="back" maxlength="1000" required placeholder="Write or paste the answer"></textarea>
         <p class="field-hint">Keep one main idea on each card for easier review.</p>
       </div>
       <div class="field">
@@ -982,21 +1219,45 @@
     </form>
   </dialog>
 
-  <dialog id="material-dialog" aria-labelledby="material-dialog-title">
+  <dialog class="sheet-dialog material-dialog" id="material-dialog" aria-labelledby="material-dialog-title">
     <form class="dialog-form" id="material-form">
       <div class="dialog-heading">
         <div>
-          <h2 id="material-dialog-title">Build cards from sources</h2>
-          <p>Search and paste your notes, or ask Copilot Chat to research a topic and return an importable deck.</p>
+          <h2 id="material-dialog-title">Build a study set</h2>
+          <p>Paste lesson notes, load a readable webpage, or open a text file. SmartDeck drafts cards for you to review.</p>
         </div>
         <button class="button icon-button button-quiet" type="button" data-close-dialog="material-dialog" aria-label="Close source material form">×</button>
       </div>
+      <p class="material-intro">This adds cards to <strong id="material-target-deck">your selected deck</strong>. You can edit every draft before adding it.</p>
       <div class="field">
-        <label for="material-topic-input">Topic</label>
-        <input id="material-topic-input" maxlength="120" required placeholder="For example, photosynthesis">
+        <label for="material-topic-input">Topic or title <span class="field-hint">(optional)</span></label>
+        <input id="material-topic-input" maxlength="120" placeholder="For example, photosynthesis">
+      </div>
+      <div class="material-link-row">
+        <div class="field">
+          <label for="material-source-url">Lesson or source link (optional)</label>
+          <input id="material-source-url" type="url" placeholder="https://example.edu/lesson">
+        </div>
+        <button class="button" id="load-source-button" type="button">Load page text</button>
+      </div>
+      <p class="field-hint">Direct loading works only when the website permits browser access. Login pages, PDFs, books, and many sites block it; SmartDeck will not bypass those controls. If blocked, copy text you’re allowed to use or open a local text file.</p>
+      <div class="material-file-row">
+        <label class="button button-small" for="material-file-input">Choose text or HTML file</label>
+        <input class="sr-only" id="material-file-input" type="file" accept=".txt,.md,.markdown,.html,.htm,text/plain,text/markdown,text/html" aria-label="Choose a text, Markdown, or HTML source file">
+        <p class="field-hint">Supports text, Markdown, and HTML files up to 1 MB.</p>
       </div>
       <div class="field">
-        <label for="source-search-type">Suggested source search</label>
+        <label for="material-text-input">Paste lesson text or notes</label>
+        <textarea class="material-text-input" id="material-text-input" maxlength="50000" required placeholder="Paste the lesson text you have permission to use. Term-definition rows and paragraphs become editable draft cards."></textarea>
+        <p class="field-hint">Up to 50,000 characters. Tab-separated terms and definitions are recognized; longer prose is split into readable sections. Review the draft cues before studying.</p>
+      </div>
+      <label class="material-consent" for="material-permission-input">
+        <input id="material-permission-input" type="checkbox" required>
+        <span>I have permission to use this material for my study set, and I’ll review the generated cards before studying.</span>
+      </label>
+      <details class="source-help">
+        <summary>Search for sources</summary>
+        <p>Search opens results in a new tab; choose and review a source yourself.</p>
         <div class="toolbar-group">
           <select id="source-search-type" class="search-input" aria-label="Choose a source search">
             <option value="web">General web</option>
@@ -1004,33 +1265,32 @@
             <option value="pubmed">PubMed</option>
             <option value="mdn">MDN Web Docs</option>
           </select>
-          <button class="button" id="search-sources-button" type="button">Search sources</button>
+          <button class="button" id="search-sources-button" type="button">Search topic</button>
         </div>
-        <p class="field-hint">Search opens results in your browser; review sources yourself. This one-file app does not fetch, scrape, or verify web pages.</p>
-      </div>
-      <div class="field">
-        <label for="material-source-url">Source URL (optional)</label>
-        <input id="material-source-url" type="url" placeholder="https://example.com/article">
-      </div>
-      <div class="field">
-        <label for="material-text-input">Paste your notes or source excerpt</label>
-        <textarea id="material-text-input" maxlength="50000" required placeholder="Paste text from a source you are allowed to use. Long material is split into smaller editable cards."></textarea>
-        <p class="field-hint">Up to 50,000 characters. Text is split at paragraph and sentence boundaries into chunks of about 700 characters; each chunk becomes an editable prompt and answer.</p>
-      </div>
+      </details>
       <details class="source-help">
-        <summary>Use Copilot Chat to make a source-backed deck</summary>
-        <p>Select the example below, press Ctrl+C, and paste it into Copilot Chat. Replace the bracketed details, review every source and claim, then copy the returned JSON. Close this form and choose <strong>Deck tools → Import JSON</strong>.</p>
+        <summary>Need richer question-and-answer drafts?</summary>
+        <p>Use Copilot Chat separately to create original, source-cited SmartDeck JSON. Review the material and every citation, then use <strong>Deck tools → Import JSON</strong>. SmartDeck itself does not send your notes to an AI service.</p>
         <label for="source-deck-prompt">Prompt to copy into Copilot Chat</label>
         <textarea id="source-deck-prompt" readonly rows="8">Research [TOPIC] for [LEARNER LEVEL] using reputable public sources. Prefer primary, official, educational, government, or peer-reviewed sources. Create 8-12 concise, original question-and-answer flashcards. Do not copy passages. Put a sourceUrl on every card and note uncertainty rather than guessing. Return only valid SmartDeck JSON in this shape:
 {"format":"smartdeck-deck","version":1,"name":"[Deck name]","cards":[{"front":"...","back":"...","sourceUrl":"https://..."}]}</textarea>
         <button class="button button-small" id="select-source-prompt-button" type="button">Select prompt text</button>
-        <p>For competitor research, ask for a dated comparison of publicly documented features with official product/help URLs and limitations. Summarize; do not scrape or reproduce competitor content. Keep those findings in the dated market report rather than treating marketing claims as learning evidence.</p>
       </details>
       <p class="dialog-error" id="material-form-error" aria-live="polite"></p>
+      <p class="material-status" id="material-load-status" role="status" aria-live="polite"></p>
       <div class="dialog-actions">
         <button class="button" type="button" data-close-dialog="material-dialog">Cancel</button>
-        <button class="button button-primary" type="submit">Create cards from notes</button>
+        <button class="button button-primary" id="preview-material-button" type="submit">Preview draft cards</button>
       </div>
+      <section class="material-preview" id="material-preview" aria-labelledby="material-preview-heading" hidden>
+        <h3 id="material-preview-heading">Review your draft cards</h3>
+        <p class="material-preview-note" id="material-preview-note"></p>
+        <div class="material-preview-list" id="material-preview-list"></div>
+        <div class="material-preview-actions">
+          <button class="button" id="edit-material-source-button" type="button">Back to source</button>
+          <button class="button button-primary" id="add-material-cards-button" type="button">Add cards to deck</button>
+        </div>
+      </section>
     </form>
   </dialog>
 
@@ -1042,6 +1302,11 @@
       const STORAGE_KEY = "smartdeck.state.v1";
       const MAX_BACKGROUND_BYTES = 1_500_000;
       const MAX_BACKGROUND_DATA_LENGTH = 2_100_000;
+      const MAX_SOURCE_FILE_BYTES = 1_000_000;
+      const MAX_SOURCE_RESPONSE_BYTES = 4_000_000;
+      const MAX_SOURCE_CHARACTERS = 50_000;
+      const MAX_DECK_IMPORT_BYTES = 10_000_000;
+      const MAX_MATERIAL_CARDS = 100;
       const sampleDeckId = "deck-web-basics";
       const sampleDeck = {
         id: sampleDeckId,
@@ -1062,7 +1327,8 @@
         chooseBackground: document.getElementById("choose-background-button"),
         backgroundInput: document.getElementById("background-image-input"),
         removeBackground: document.getElementById("remove-background-button"),
-        themeSelect: document.getElementById("theme-select"),
+        themeColorMeta: document.querySelector('meta[name="theme-color"]'),
+        themeChoices: document.querySelectorAll("[data-theme-choice]"),
         boardSettings: document.getElementById("board-settings-button"),
         voiceSettings: document.getElementById("voice-settings-button"),
         toolsButton: document.getElementById("tools-button"),
@@ -1072,6 +1338,7 @@
         cardsDialog: document.getElementById("cards-dialog"),
         cardsDrawerButton: document.getElementById("cards-drawer-button"),
         cardsDrawerCount: document.getElementById("cards-drawer-count"),
+        drawerBuildMaterial: document.getElementById("drawer-build-material-button"),
         drawerNewCard: document.getElementById("drawer-new-card-button"),
         deckList: document.getElementById("deck-list"),
         deckTotal: document.getElementById("deck-total"),
@@ -1122,9 +1389,19 @@
         materialDialog: document.getElementById("material-dialog"),
         materialForm: document.getElementById("material-form"),
         materialTopicInput: document.getElementById("material-topic-input"),
+        materialTargetDeck: document.getElementById("material-target-deck"),
         materialSourceUrl: document.getElementById("material-source-url"),
+        loadSource: document.getElementById("load-source-button"),
+        materialFileInput: document.getElementById("material-file-input"),
         materialTextInput: document.getElementById("material-text-input"),
+        materialPermission: document.getElementById("material-permission-input"),
         materialFormError: document.getElementById("material-form-error"),
+        materialLoadStatus: document.getElementById("material-load-status"),
+        materialPreview: document.getElementById("material-preview"),
+        materialPreviewNote: document.getElementById("material-preview-note"),
+        materialPreviewList: document.getElementById("material-preview-list"),
+        editMaterialSource: document.getElementById("edit-material-source-button"),
+        addMaterialCards: document.getElementById("add-material-cards-button"),
         sourceSearchType: document.getElementById("source-search-type"),
         searchSources: document.getElementById("search-sources-button"),
         sourceDeckPrompt: document.getElementById("source-deck-prompt"),
@@ -1229,7 +1506,7 @@
           version: 1,
           activeDeckId: sampleDeckId,
           decks: [structuredCloneSafe(sampleDeck)],
-          theme: "obsidian",
+          theme: "tech",
           backgroundImage: "",
           voicePreferences: { reader: "", hosts: { Nova: "", Atlas: "", Quill: "" } }
         };
@@ -1299,7 +1576,8 @@
           });
         }
         const activeDeckId = decks.some((deck) => deck.id === value.activeDeckId) ? value.activeDeckId : (decks[0] ? decks[0].id : null);
-        const theme = ["obsidian", "midnight", "forest", "violet"].includes(value.theme) ? value.theme : "obsidian";
+        const themeAliases = { obsidian: "tech", midnight: "tech", forest: "pizza", violet: "arcade" };
+        const theme = ["tech", "pizza", "paper", "arcade"].includes(value.theme) ? value.theme : (themeAliases[value.theme] || "tech");
         return { version: 1, activeDeckId, decks, theme, backgroundImage, voicePreferences };
       }
 
@@ -1324,9 +1602,11 @@
       let statusTimer = 0;
       let challengeSession = null;
       let ratingAnimating = false;
+      let loadedSourceUrl = "";
       let deckDialogReturnFocus = null;
       let cardDialogReturnFocus = null;
       let materialDialogReturnFocus = null;
+      let pendingMaterialCards = [];
 
       const challengeHosts = [
         { name: "Nova", line: "Nova says: Let’s see what you remember." },
@@ -1467,7 +1747,10 @@
 
       function applyAppearance() {
         document.documentElement.dataset.theme = state.theme;
-        elements.themeSelect.value = state.theme;
+        elements.themeColorMeta.content = getComputedStyle(document.documentElement).getPropertyValue("--canvas").trim();
+        elements.themeChoices.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.themeChoice === state.theme));
+        });
         applyBackground();
       }
 
@@ -1593,7 +1876,7 @@
         const modeLabels = { all: "All cards", right: "Learned pile", wrong: "Review pile", due: "Due for review" };
         elements.mode.textContent = modeLabels[study.mode] || "All cards";
         if (!deck.cards.length) {
-          elements.stage.innerHTML = '<div class="empty-study"><h3>No cards in this deck yet</h3><p>Add your first prompt and answer, then start a study session.</p><button class="button button-primary" type="button" data-action="new-card">＋ Add a card</button></div>';
+          elements.stage.innerHTML = '<div class="empty-study">          <h3>No cards in this deck yet</h3><p>Paste permitted notes or a lesson link and SmartDeck will draft a set you can review.</p><button class="button button-primary" type="button" data-action="build-material">＋ Build cards from material</button><button class="button" type="button" data-action="new-card">Add one card manually</button></div>';
           updateProgress(0, 0);
           setStudyButtons(false);
           return;
@@ -1770,13 +2053,25 @@
       }
 
       function openMaterialDialog() {
-        if (!activeDeck()) return;
-        materialDialogReturnFocus = elements.toolsDialog.open ? elements.toolsButton : elements.sourceMaterial;
+        const deck = activeDeck();
+        if (!deck) return;
+        materialDialogReturnFocus = elements.toolsDialog.open
+          ? elements.toolsButton
+          : elements.cardsDialog.open
+            ? elements.drawerBuildMaterial
+            : elements.sourceMaterial;
         closeDialog("tools-dialog");
+        closeDialog("cards-dialog");
         elements.materialForm.reset();
         elements.materialFormError.textContent = "";
+        elements.materialLoadStatus.textContent = "";
+        elements.materialPreview.hidden = true;
+        elements.materialPreviewList.replaceChildren();
+        elements.materialTargetDeck.textContent = deck.name;
+        pendingMaterialCards = [];
+        loadedSourceUrl = "";
         elements.materialDialog.showModal();
-        elements.materialTopicInput.focus();
+        elements.materialTextInput.focus();
       }
 
       function closeDialog(id) {
@@ -2146,7 +2441,7 @@
         const sourceInput = elements.cardSourceInput.value.trim();
         const sourceUrl = safeSourceUrl(sourceInput);
         if (!front || !back) {
-          elements.cardFormError.textContent = "Add both a front prompt and a back answer.";
+          elements.cardFormError.textContent = "Add both a cue and an answer.";
           (!front ? elements.cardFrontInput : elements.cardBackInput).focus();
           return;
         }
@@ -2174,7 +2469,7 @@
         render();
       }
 
-      // Source-note transformation and user-directed web search.
+      // Source text loading, draft-card generation, and user-directed web search.
       function chunkMaterial(text, maxLength = 700) {
         const paragraphs = text.replace(/\r\n?/g, "\n").split(/\n\s*\n/).map((part) => part.trim()).filter(Boolean);
         const pieces = [];
@@ -2206,34 +2501,191 @@
         return chunks;
       }
 
-      function createCardsFromMaterial(event) {
+      function parseDefinitionLine(line) {
+        const match = line.match(/^(.{2,90}?)(?:\t|::|=>|->|→| \| | — | – | - |:\s+)(.{8,})$/);
+        if (!match) return null;
+        const term = match[1].replace(/^[-*•\s]+|[\s:]+$/g, "").trim();
+        const definition = match[2].trim();
+        if (!term || !definition || /^(for example|note|source|question|answer)$/i.test(term)) return null;
+        return { front: `What is ${term}?`, back: definition };
+      }
+
+      function makeMaterialCue(text, section, topic, index) {
+        const firstSentence = (text.match(/[^.!?]+[.!?]?/) || [text])[0].trim();
+        const definition = firstSentence.match(/^(.{2,70}?)\s+(is|are|means|refers to|describes)\s+/i);
+        if (definition) {
+          const subject = definition[1].replace(/^(the|a|an)\s+/i, "").trim();
+          return `${/^are$/i.test(definition[2]) ? "What are" : "What is"} ${subject}?`;
+        }
+        const action = firstSentence.match(/^(.{2,65}?)\s+(causes|produces|creates|releases|uses|requires|contains|includes|converts|stores|controls|measures)\s+[^.!?]+/i);
+        if (action) {
+          const baseVerb = { causes: "cause", produces: "produce", creates: "create", releases: "release", uses: "use", requires: "require", contains: "contain", includes: "include", converts: "convert", stores: "store", controls: "control", measures: "measure" }[action[2].toLowerCase()];
+          return `What does ${action[1].replace(/^(the|a|an)\s+/i, "").trim()} ${baseVerb}?`;
+        }
+        const clue = firstSentence.length > 92 ? `${firstSentence.slice(0, 89).trimEnd()}…` : firstSentence;
+        if (section) return `Explain ${section} (idea ${index}): ${clue}`;
+        return `Explain this idea about ${topic} using this cue: ${clue}`;
+      }
+
+      function parseMaterialDrafts(text, topic) {
+        const drafts = [];
+        let section = "";
+        let currentLines = [];
+        const addParagraph = (lines) => {
+          const contentLines = lines.map((line) => line.replace(/^[-*•]\s+/, "").trim()).filter(Boolean);
+          if (!contentLines.length) return;
+          let proseLines = [];
+          const flushProseLines = () => {
+            if (!proseLines.length) return;
+            const paragraph = proseLines.join(" ");
+            const firstCardIndex = drafts.length + 1;
+            for (const [index, chunk] of chunkMaterial(paragraph).entries()) {
+              const cue = makeMaterialCue(chunk, section || "", topic, firstCardIndex + index);
+              drafts.push({ front: cue, back: chunk });
+            }
+            proseLines = [];
+          };
+          for (let index = 0; index < contentLines.length; index += 1) {
+            const question = contentLines[index].match(/^(?:q|question)\s*[:.)-]\s*(.+)$/i);
+            const answer = contentLines[index + 1] && contentLines[index + 1].match(/^(?:a|answer)\s*[:.)-]\s*(.+)$/i);
+            if (question && answer) {
+              flushProseLines();
+              drafts.push({ front: question[1].trim(), back: answer[1].trim() });
+              index += 1;
+              continue;
+            }
+            const definition = parseDefinitionLine(contentLines[index]);
+            if (definition) {
+              flushProseLines();
+              drafts.push(definition);
+            } else {
+              proseLines.push(contentLines[index]);
+            }
+          }
+          flushProseLines();
+        };
+
+        for (const rawLine of text.replace(/\r\n?/g, "\n").split("\n")) {
+          const line = rawLine.trim();
+          const heading = line.match(/^#{1,6}\s+(.+)$/);
+          if (heading) {
+            addParagraph(currentLines);
+            currentLines = [];
+            section = heading[1].replace(/[*_`]/g, "").trim();
+          } else if (!line) {
+            addParagraph(currentLines);
+            currentLines = [];
+          } else {
+            currentLines.push(line);
+          }
+        }
+        addParagraph(currentLines);
+        return drafts;
+      }
+
+      function renderMaterialPreview(drafts, sourceLength) {
+        pendingMaterialCards = drafts;
+        elements.materialPreviewList.replaceChildren();
+        const fragment = document.createDocumentFragment();
+        drafts.forEach((draft, index) => {
+          const card = document.createElement("article");
+          card.className = "material-preview-card";
+          const cueLabel = document.createElement("label");
+          cueLabel.textContent = `Cue or question ${index + 1}`;
+          const cueInput = document.createElement("textarea");
+          cueInput.maxLength = 500;
+          cueInput.required = true;
+          cueInput.value = draft.front;
+          cueInput.setAttribute("aria-label", `Cue or question ${index + 1}`);
+          cueLabel.append(cueInput);
+          const answerLabel = document.createElement("label");
+          answerLabel.textContent = `Answer to learn ${index + 1}`;
+          const answerInput = document.createElement("textarea");
+          answerInput.maxLength = 1000;
+          answerInput.required = true;
+          answerInput.value = draft.back;
+          answerInput.setAttribute("aria-label", `Answer to learn ${index + 1}`);
+          answerLabel.append(answerInput);
+          card.append(cueLabel, answerLabel);
+          fragment.append(card);
+        });
+        elements.materialPreviewList.append(fragment);
+        elements.materialPreviewNote.textContent = `${drafts.length} editable draft cards from ${sourceLength.toLocaleString()} characters. The drafts are generated locally from headings, term-definition rows, and passages—not by AI.`;
+        elements.addMaterialCards.textContent = `Add ${drafts.length} cards to ${activeDeck()?.name || "deck"}`;
+        elements.materialPreview.hidden = false;
+        elements.materialPreview.scrollIntoView({ block: "nearest" });
+      }
+
+      function previewMaterialCards(event) {
         event.preventDefault();
         const deck = activeDeck();
         if (!deck) return;
-        const topic = elements.materialTopicInput.value.trim();
+        const topic = elements.materialTopicInput.value.trim() || deck.name;
         const sourceText = elements.materialTextInput.value.trim();
         const sourceInput = elements.materialSourceUrl.value.trim();
         const sourceUrl = safeSourceUrl(sourceInput);
-        if (!topic || !sourceText) {
-          elements.materialFormError.textContent = "Enter a topic and paste some source material.";
-          (!topic ? elements.materialTopicInput : elements.materialTextInput).focus();
+        elements.materialFormError.textContent = "";
+        if (!elements.materialPermission.checked) {
+          elements.materialFormError.textContent = "Confirm you have permission to use this material before making a study set.";
+          elements.materialPermission.focus();
           return;
         }
-        if (sourceInput && !sourceUrl) {
-          elements.materialFormError.textContent = "Enter a source link that starts with http:// or https://.";
-          elements.materialSourceUrl.focus();
-          return;
-        }
-        const chunks = chunkMaterial(sourceText);
-        if (!chunks.length) {
-          elements.materialFormError.textContent = "Paste some readable text before creating cards.";
+        if (!sourceText) {
+          elements.materialFormError.textContent = "Paste lesson text, load a readable page, or choose a text file first.";
           elements.materialTextInput.focus();
           return;
         }
-        const cards = chunks.map((chunk, index) => ({
+        if (sourceInput && !sourceUrl) {
+          elements.materialFormError.textContent = "Enter a valid source link that starts with http:// or https://.";
+          elements.materialSourceUrl.focus();
+          return;
+        }
+        if (sourceText.length > MAX_SOURCE_CHARACTERS) {
+          elements.materialFormError.textContent = "This is over the 50,000-character limit. Split it into lesson sections and build a set for each.";
+          elements.materialTextInput.focus();
+          return;
+        }
+        const drafts = parseMaterialDrafts(sourceText, topic);
+        if (!drafts.length) {
+          elements.materialFormError.textContent = "No readable text could be turned into cards. Try pasting the lesson text.";
+          elements.materialTextInput.focus();
+          return;
+        }
+        if (drafts.length > MAX_MATERIAL_CARDS) {
+          elements.materialFormError.textContent = `This lesson creates more than ${MAX_MATERIAL_CARDS} cards. Split it into smaller sections and preview them separately.`;
+          elements.materialTextInput.focus();
+          return;
+        }
+        elements.materialLoadStatus.textContent = "";
+        renderMaterialPreview(drafts, sourceText.length);
+      }
+
+      function addMaterialCards() {
+        const deck = activeDeck();
+        if (!deck || !pendingMaterialCards.length) return;
+        const previewCards = [...elements.materialPreviewList.querySelectorAll(".material-preview-card")];
+        const drafts = previewCards.map((card) => ({
+          front: card.querySelector("textarea[aria-label^='Cue']").value.trim(),
+          back: card.querySelector("textarea[aria-label^='Answer']").value.trim()
+        }));
+        const invalidDraft = drafts.findIndex((card) => !card.front || !card.back);
+        if (invalidDraft >= 0) {
+          elements.materialFormError.textContent = "Each draft needs both a cue and an answer. Edit or remove empty text before adding.";
+          const firstEmpty = previewCards[invalidDraft].querySelector("textarea:invalid");
+          (firstEmpty || previewCards[invalidDraft].querySelector("textarea")).focus();
+          return;
+        }
+        const sourceInput = elements.materialSourceUrl.value.trim();
+        const sourceUrl = safeSourceUrl(sourceInput);
+        if (sourceInput && !sourceUrl) {
+          elements.materialFormError.textContent = "Enter a valid source link that starts with http:// or https://.";
+          elements.materialSourceUrl.focus();
+          return;
+        }
+        const cards = drafts.map((draft) => ({
           id: createId("card"),
-          front: `What is one key point about ${topic}? (${index + 1})`,
-          back: chunk,
+          front: draft.front,
+          back: draft.back,
           sourceUrl,
           complexity: "good",
           correctCount: 0,
@@ -2247,16 +2699,179 @@
         persist();
         closeDialog("material-dialog");
         render();
-        announce(`Added ${cards.length} editable cards from your material. Review the prompts and improve them for your topic.`);
+        announce(`Added ${cards.length} reviewed draft cards to ${deck.name}.`);
+      }
+
+      function readableTextFromHtml(html) {
+        const documentCopy = new DOMParser().parseFromString(html, "text/html");
+        const title = documentCopy.title.trim();
+        documentCopy.querySelectorAll("script,style,noscript,svg,iframe,nav,footer,aside,form,button").forEach((node) => node.remove());
+        const content = documentCopy.querySelector("main, article") || documentCopy.body;
+        const text = (content.innerText || content.textContent || "")
+          .replace(/\u00a0/g, " ")
+          .replace(/[ \t]+\n/g, "\n")
+          .replace(/\n{3,}/g, "\n\n")
+          .trim();
+        return { title, text };
+      }
+
+      async function readResponseTextLimited(response, maxBytes) {
+        if (!response.body || typeof response.body.getReader !== "function") {
+          const text = await response.text();
+          if (text.length > maxBytes) throw new Error("This page is too large to load here.");
+          return text;
+        }
+        const reader = response.body.getReader();
+        const chunks = [];
+        let totalBytes = 0;
+        try {
+          while (true) {
+            const result = await reader.read();
+            if (result.done) break;
+            totalBytes += result.value.byteLength;
+            if (totalBytes > maxBytes) {
+              await reader.cancel();
+              throw new Error("This page is too large to load here.");
+            }
+            chunks.push(result.value);
+          }
+        } finally {
+          reader.releaseLock();
+        }
+        const bytes = new Uint8Array(totalBytes);
+        let offset = 0;
+        chunks.forEach((chunk) => {
+          bytes.set(chunk, offset);
+          offset += chunk.byteLength;
+        });
+        return new TextDecoder().decode(bytes);
+      }
+
+      function isLocalOrIpHost(hostname) {
+        const host = hostname.toLowerCase().replace(/^\[|\]$/g, "");
+        return host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local") ||
+          host.endsWith(".internal") || host.includes(":") || /^\d+(?:\.\d+){3}$/.test(host);
+      }
+
+      async function loadSourcePage() {
+        elements.materialFormError.textContent = "";
+        if (!elements.materialPermission.checked) {
+          elements.materialFormError.textContent = "Confirm you have permission to use this material before loading it.";
+          elements.materialPermission.focus();
+          return;
+        }
+        const sourceUrl = safeSourceUrl(elements.materialSourceUrl.value.trim());
+        if (!sourceUrl || !sourceUrl.startsWith("https://")) {
+          elements.materialFormError.textContent = "Enter a valid HTTPS lesson or source link.";
+          elements.materialSourceUrl.focus();
+          return;
+        }
+        const parsedUrl = new URL(sourceUrl);
+        if (parsedUrl.username || parsedUrl.password || isLocalOrIpHost(parsedUrl.hostname)) {
+          elements.materialFormError.textContent = "For safety, remove any username or password and use a public website hostname, not a local or IP-address link.";
+          elements.materialSourceUrl.focus();
+          return;
+        }
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 15000);
+        elements.loadSource.disabled = true;
+        elements.loadSource.textContent = "Loading…";
+        elements.materialLoadStatus.textContent = "Trying to read this page directly. No proxy or login credentials are used.";
+        try {
+          const response = await fetch(sourceUrl, { method: "GET", credentials: "omit", signal: controller.signal, headers: { Accept: "text/html,text/plain" } });
+          if (!response.ok) throw new Error(`The website returned ${response.status}.`);
+          const finalUrl = safeSourceUrl(response.url);
+          if (!finalUrl || !finalUrl.startsWith("https://") || isLocalOrIpHost(new URL(finalUrl).hostname)) {
+            throw new Error("The link redirected to a page that cannot be loaded here.");
+          }
+          const contentLength = Number(response.headers.get("content-length") || 0);
+          if (contentLength > MAX_SOURCE_RESPONSE_BYTES) throw new Error("This page is too large to load here.");
+          const contentType = (response.headers.get("content-type") || "").toLowerCase();
+          if (!contentType.includes("text/html") && !contentType.includes("text/plain") && !contentType.includes("application/xhtml+xml")) {
+            throw new Error("This link is not a readable HTML or plain-text page. PDF and book files are not supported by this browser-only importer.");
+          }
+          const responseText = await readResponseTextLimited(response, MAX_SOURCE_RESPONSE_BYTES);
+          if (responseText.length > MAX_SOURCE_CHARACTERS) throw new Error("This page contains more than 50,000 characters. Copy the permitted lesson section or use a text file.");
+          const extracted = contentType.includes("text/html") || contentType.includes("application/xhtml+xml")
+            ? readableTextFromHtml(responseText)
+            : { title: "", text: responseText.trim() };
+          if (!extracted.text) throw new Error("No readable lesson text was found on this page.");
+          if (extracted.text.length > MAX_SOURCE_CHARACTERS) throw new Error("The readable page content is over 50,000 characters. Copy the permitted lesson section or use a text file.");
+          elements.materialTextInput.value = extracted.text;
+          loadedSourceUrl = finalUrl;
+          elements.materialSourceUrl.value = finalUrl;
+          if (!elements.materialTopicInput.value.trim() && extracted.title) elements.materialTopicInput.value = extracted.title.slice(0, 120);
+          elements.materialLoadStatus.textContent = `Loaded ${extracted.text.length.toLocaleString()} characters. Check the text, then preview your cards.`;
+          announce("Page text loaded. Review it and preview your draft cards.");
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          if (loadedSourceUrl && loadedSourceUrl !== sourceUrl) {
+            elements.materialTextInput.value = "";
+            loadedSourceUrl = "";
+          }
+          const detail = error && error.name === "AbortError"
+            ? "Page loading timed out."
+            : message.includes("Failed to fetch")
+              ? "This site did not allow the browser to read it, commonly because of cross-origin restrictions. Your permission to study it does not override the site's browser rules. Open the source and paste the text you may use, or choose a local text file."
+              : message;
+          elements.materialFormError.textContent = detail;
+          elements.materialLoadStatus.textContent = "";
+          announce(`Could not load the source page. ${detail}`);
+        } finally {
+          window.clearTimeout(timeout);
+          elements.loadSource.disabled = false;
+          elements.loadSource.textContent = "Load page text";
+        }
+      }
+
+      async function loadMaterialFile(file) {
+        if (!file) return;
+        elements.materialFormError.textContent = "";
+        if (!elements.materialPermission.checked) {
+          elements.materialFormError.textContent = "Confirm you have permission to use this material before loading it.";
+          elements.materialPermission.focus();
+          elements.materialFileInput.value = "";
+          return;
+        }
+        const extension = file.name.split(".").pop().toLowerCase();
+        if (!["txt", "md", "markdown", "html", "htm"].includes(extension)) {
+          elements.materialFormError.textContent = "Choose a .txt, .md, .markdown, .html, or .htm file.";
+          elements.materialFileInput.value = "";
+          return;
+        }
+        if (file.size > MAX_SOURCE_FILE_BYTES) {
+          elements.materialFormError.textContent = "That file is over 1 MB. Paste a smaller lesson section or split it into files.";
+          elements.materialFileInput.value = "";
+          return;
+        }
+        try {
+          const content = await file.text();
+          const extracted = extension === "html" || extension === "htm"
+            ? readableTextFromHtml(content)
+            : { title: "", text: content.trim() };
+          if (extracted.text.length > MAX_SOURCE_CHARACTERS) {
+            elements.materialFormError.textContent = "This file contains over 50,000 readable characters. Split it into lesson sections first.";
+            return;
+          }
+          elements.materialTextInput.value = extracted.text;
+          loadedSourceUrl = "";
+          elements.materialSourceUrl.value = "";
+          if (!elements.materialTopicInput.value.trim()) {
+            elements.materialTopicInput.value = (extracted.title || file.name.replace(/\.[^.]+$/, "")).slice(0, 120);
+          }
+          elements.materialLoadStatus.textContent = `Loaded ${extracted.text.length.toLocaleString()} characters from ${file.name}. Preview the draft cards when ready.`;
+          announce(`Loaded lesson text from ${file.name}.`);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          elements.materialFormError.textContent = `Could not read that file: ${message}`;
+          announce(`Could not read ${file.name}.`);
+        } finally {
+          elements.materialFileInput.value = "";
+        }
       }
 
       function searchForSources() {
-        const topic = elements.materialTopicInput.value.trim();
-        if (!topic) {
-          elements.materialFormError.textContent = "Enter a topic before searching for sources.";
-          elements.materialTopicInput.focus();
-          return;
-        }
+        const topic = elements.materialTopicInput.value.trim() || activeDeck()?.name || "study material";
         const suffixes = {
           web: "",
           academic: " site:edu OR site:gov",
@@ -2308,6 +2923,9 @@
 
       async function importDeckFile(file) {
         try {
+          if (file.size > MAX_DECK_IMPORT_BYTES) {
+            throw new Error("That JSON file is over 10 MB. Export a smaller deck or split the content before importing.");
+          }
           const parsed = JSON.parse(await file.text());
           if (!parsed || typeof parsed !== "object" || (parsed.format && parsed.format !== "smartdeck-deck") || (parsed.version && parsed.version !== 1) || !Array.isArray(parsed.cards)) {
             throw new Error("Choose a SmartDeck JSON file with a name and a cards array.");
@@ -2388,17 +3006,17 @@
 
       // One-time event binding and application startup.
       elements.boardSettings.addEventListener("click", () => elements.boardDialog.showModal());
-      elements.themeSelect.addEventListener("change", () => {
+      elements.themeChoices.forEach((button) => button.addEventListener("click", () => {
         const previousTheme = state.theme;
-        state.theme = elements.themeSelect.value;
+        state.theme = button.dataset.themeChoice;
         applyAppearance();
         if (!persist()) {
           state.theme = previousTheme;
           applyAppearance();
           return;
         }
-        announce(`Applied the ${elements.themeSelect.options[elements.themeSelect.selectedIndex].text} palette.`);
-      });
+        announce(`Applied the ${button.querySelector("strong").textContent} theme.`);
+      }));
       elements.voiceSettings.addEventListener("click", () => elements.voiceDialog.showModal());
       elements.toolsButton.addEventListener("click", () => elements.toolsDialog.showModal());
       elements.cardsDrawerButton.addEventListener("click", () => elements.cardsDialog.showModal());
@@ -2431,6 +3049,7 @@
       elements.deleteDeck.addEventListener("click", deleteDeck);
       elements.newCard.addEventListener("click", () => openCardDialog());
       elements.sourceMaterial.addEventListener("click", openMaterialDialog);
+      elements.drawerBuildMaterial.addEventListener("click", openMaterialDialog);
       elements.selectSourcePrompt.addEventListener("click", () => {
         elements.sourceDeckPrompt.focus();
         elements.sourceDeckPrompt.select();
@@ -2441,7 +3060,34 @@
         const file = elements.importDeck.files && elements.importDeck.files[0];
         if (file) importDeckFile(file);
       });
-      elements.materialForm.addEventListener("submit", createCardsFromMaterial);
+      elements.materialForm.addEventListener("submit", previewMaterialCards);
+      elements.loadSource.addEventListener("click", loadSourcePage);
+      elements.materialFileInput.addEventListener("change", () => {
+        const file = elements.materialFileInput.files && elements.materialFileInput.files[0];
+        if (file) loadMaterialFile(file);
+      });
+      elements.materialTextInput.addEventListener("input", () => {
+        if (elements.materialPreview.hidden) return;
+        elements.materialPreview.hidden = true;
+        elements.materialPreviewList.replaceChildren();
+        pendingMaterialCards = [];
+      });
+      elements.materialSourceUrl.addEventListener("input", () => {
+        const enteredUrl = safeSourceUrl(elements.materialSourceUrl.value.trim());
+        if (!loadedSourceUrl || enteredUrl === loadedSourceUrl) return;
+        elements.materialTextInput.value = "";
+        loadedSourceUrl = "";
+        elements.materialPreview.hidden = true;
+        elements.materialPreviewList.replaceChildren();
+        pendingMaterialCards = [];
+        elements.materialLoadStatus.textContent = "The link changed, so the previously loaded text was cleared to avoid a mismatched source. Load or paste matching text.";
+      });
+      elements.editMaterialSource.addEventListener("click", () => {
+        elements.materialPreview.hidden = true;
+        pendingMaterialCards = [];
+        elements.materialTextInput.focus();
+      });
+      elements.addMaterialCards.addEventListener("click", addMaterialCards);
       elements.searchSources.addEventListener("click", searchForSources);
       elements.deckForm.addEventListener("submit", saveDeck);
       elements.cardForm.addEventListener("submit", saveCard);
@@ -2478,6 +3124,7 @@
         if (!button) return;
         if (button.dataset.action === "new-deck") openDeckDialog();
         if (button.dataset.action === "new-card") openCardDialog();
+        if (button.dataset.action === "build-material") openMaterialDialog();
         if (button.dataset.action === "redo-session") redoSession();
       });
       elements.stage.addEventListener("keydown", (event) => {

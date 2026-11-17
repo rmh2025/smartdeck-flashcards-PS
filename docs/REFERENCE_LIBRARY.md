@@ -2,7 +2,7 @@
 
 This is the project's central index of documents to consult when making product, learning, accessibility, browser-platform, data-storage, or publishing decisions. It links to the original sources rather than copying them into the repository.
 
-**Link check:** The links below were opened on 2026-11-16. External pages can change; recheck the current source before relying on version-specific guidance.
+**Link check:** Most project references were last opened on 2026-11-16. Competitor import/creation pages and browser CORS guidance were checked again on 2026-11-17. External pages can change; recheck current behavior before relying on version-specific guidance.
 
 ## How to use this library
 
@@ -25,10 +25,11 @@ This is the project's central index of documents to consult when making product,
 |---|---|---|
 | Anki: [official product site](https://apps.ankiweb.net/) and [manual background](https://docs.ankiweb.net/manual/background.md) | Publicly described flashcards, scheduling, synchronization, media, and customization. | Product and documentation claims are not a comparative usability study or independent proof of learning outcomes. |
 | Quizlet Help Center: [Studying on Quizlet](https://help.quizlet.com/hc/en-us/articles/360030841732-Studying-on-Quizlet) | Examples of study modes, flashcards, and progressive practice flows. | Vendor documentation describes Quizlet's product; features and access tiers may change. It is not independent research. |
+| Quizlet Help Center: [Creating sets by importing content](https://help.quizlet.com/hc/en-us/articles/360029977151-Creating-sets-by-importing-content) | Documents direct paste import for term-definition rows using separators and rows, and points to AI study guides/Smart Assist for unstructured notes. | Official product workflow, not independent evidence of question quality or learning outcomes; AI availability may vary by platform, age, region, account, and plan. Checked 2026-11-17. |
 | Quizlet Help Center: [Studying with Answer Streaks](https://help.quizlet.com/hc/en-us/articles/40011154960653-Studying-with-Answer-Streaks) | Example of how another study product presents consecutive-answer streaks. | Documents Quizlet's implementation, not a causal finding that streaks improve retention. |
 | Quizlet Help Center: [Using Progress for targeted studying](https://help.quizlet.com/hc/en-us/articles/360048803491-Using-Progress-for-targeted-studying) | Example of grouping study content by progress and using those groups to target review. | Product behavior and availability may change; do not treat its progress labels as validated mastery measurements. |
 | Brainscape: [official product site](https://www.brainscape.com/) and [subject library](https://www.brainscape.com/subjects) | Publicly described AI-assisted card creation/discovery, spaced repetition, and subject-organized decks. | Marketing claims and feature availability are not independently verified; review current pages before making a comparison. |
-| Knowt: [official product site](https://knowt.com/) | Publicly described flashcards, AI-assisted study material, and voice-study features. | Marketing claims, usage claims, access tiers, and feature availability are not independently verified. |
+| Knowt: [AI Flashcard Maker](https://knowt.com/ai-flashcard-maker) | Official page advertises pasting notes or uploading multiple file types to generate flashcards and other study activities. | Vendor marketing; no independent quality, speed, usage, access-tier, or learning-outcome evaluation. Checked 2026-11-17. |
 
 ## Accessibility and interaction design
 
@@ -47,6 +48,7 @@ This is the project's central index of documents to consult when making product,
 |---|---|---|
 | MDN: [`SpeechSynthesis`](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis) | Speaking text, stopping speech, and enumerating available voices. | Voices are supplied by the browser or device and vary. Keep equivalent visible text and graceful behavior when speech is unavailable. |
 | MDN: [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) | `localStorage` and `sessionStorage` behavior, persistence, and origin boundaries. | Browser storage is local to the origin/device, may be cleared or unavailable, and is synchronous. Do not imply cloud sync or use it for secrets. |
+| MDN: [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS) | Why browser `fetch()` can read another origin only when the source server permits it. | Permission to study a source does not grant browser JavaScript cross-origin access. A static app cannot bypass CORS, authentication, or access controls; checked 2026-11-17. |
 | OWASP: [HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html) | Security considerations for browser-side features and data handling. | A general security reference, not a substitute for reviewing SmartDeck's specific code and threat model. |
 
 ## Git and publishing

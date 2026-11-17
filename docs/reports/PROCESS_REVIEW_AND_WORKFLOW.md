@@ -1,6 +1,6 @@
 # Project Process Review and Reusable Workflow
 
-**Review date:** 2026-11-16
+**Review date:** 2026-11-17
 **Evidence:** The SmartDeck conversation recorded in this session, project checkpoints, the current files, and browser/test summaries.
 **Purpose:** Improve how the human/AI team aligns, builds, verifies, documents, and releases future work. This is a process review, not an evaluation of the project owner's skill.
 
@@ -20,6 +20,8 @@ The conversational record also shows early confusion about which text belongs in
 | **Weaknesses** | Requirements expanded substantially after implementation began. There was no durable backlog, decision log, requirement-to-test trace, or report index at the start. | Use the phased workflow and change record below; label additions as current scope, next phase, or deferred. |
 | **Weaknesses** | The app is a 2,500+ line single-file application with no committed automated test runner. Manual test history was stored in session summaries rather than reproducible project artifacts. | Section markers and a quality baseline now make it easier to navigate. Add a minimal repeatable test suite when compatible with the assignment; do not make a risky monolith rewrite just for appearances. |
 | **Weaknesses** | Early competitor and learning references were scattered. Some previous summaries became stale (for example, listing voice checks as pending after those checks had been completed). | Use dated reports and the repository's current status as the source of truth; treat conversation summaries/checkpoints as history, not current test evidence. |
+| **Weaknesses** | Competitor reviews and target-user feedback have not been sampled; a detailed UI rationale can still be a hypothesis rather than user validation. | Keep user preference, official competitor feature claims, research evidence, and design judgment separate. Plan a transparent review/user research method before making market-wide claims. |
+| **Weaknesses** | The app has no recorded independent security assessment; browser storage is local and not encrypted by SmartDeck. | Document data flows and limitations, check input/source boundaries during feature work, and require a privacy/threat-model decision before adding a service, AI API, sync, or accounts. |
 | **Opportunities** | A careful first-hand usability study can identify which parts are genuinely easier for students, beginners, and people using different access methods. | Run voluntary, formative user sessions and task comparisons; record barriers without collecting diagnoses or unnecessary personal data. |
 | **Opportunities** | A repeatable acceptance matrix, accessibility review, and small browser automation suite would reduce regression effort. | Convert the QA baseline into executable tests incrementally, starting with persistence, ratings, quiz boundaries, and dialog/keyboard behavior. |
 | **Opportunities** | The current local-data design can be made clearer and safer through export reminders and documented recovery limits; sync could be considered later if users require it. | Do not add a backend until a validated user need, privacy model, and maintenance owner exist. |
@@ -31,12 +33,15 @@ The conversational record also shows early confusion about which text belongs in
 ## Process changes made in this review
 
 - Added a dated competitor and UI/accessibility baseline, with vendor claims separated from research evidence.
+- Added a screen-control map for the study card, below-card controls, drawers, and source workflow. It records user jobs, assignment/evidence links, rationale confidence, and acceptance checks; competitor internal motives and uncollected user reviews are explicitly not inferred.
 - Added a quality/operations register that shows pass, partial, not measured, and not tested statuses rather than implying universal success.
+- Added a browser-only privacy/security baseline, including local-storage limits, direct source-fetch behavior, search disclosure, and the absence of independent security testing.
 - Added source and report indexes plus instructions for coding assistants to consult them.
 - Added searchable CSS and JavaScript section markers to the single-file app and updated the README's code map.
 - Ran Lychee 0.24.2 from a checksum-verified temporary download: offline local links and online links both passed after correcting an outdated Anki URL. Lychee remains optional and is not an app dependency or committed CI requirement.
 - Added a GitHub Pages workflow that publishes only the self-contained `index.html`; remote deployment must still be verified independently.
-- Added four saved accent palettes and made the appearance entry point more explicit; the optional photo background keeps its dark readability overlay.
+- Replaced the accent-only options with four full themes that vary typography, control/card shapes, spacing, surface treatment, layout, and colors; made the saved photo more visible through theme-specific surfaces.
+- Added a visible paste/link/file material builder with editable local draft cards, source attribution, and permission/review confirmation. Direct URL loading still depends on CORS and never bypasses site controls.
 - Added an in-app Copilot prompt and JSON import instructions so sourced deck creation is discoverable without suggesting the browser app scrapes sites or sends notes to an AI service.
 - Added a research-to-operations traceability table connecting market/accessibility/learning signals to shipped controls, repeatable checks, and update triggers.
 - Kept market monitoring out of the running app. A static, dated desk scan is available now; continuous market collection would need a data source, server or service, privacy review, refresh policy, and a maintainer.
@@ -46,6 +51,7 @@ The conversational record also shows early confusion about which text belongs in
 
 - Keep the exact assignment handout with the project. The README currently preserves the QA checklist and complete/incomplete reflection rubric, but it may not contain every requirement from the original handout; do not claim a full rubric audit without comparing that source.
 - Isolate and restore browser storage during UI testing. The final regression used temporary test data and restored the existing browser state afterward.
+- Treat a changed baseline as a new dated revision, not an overwrite: preserve the prior value, record the new value, explain the reason and code/process change, cite the test/evidence, and keep remaining limits.
 - Make test expectations match the feature contract, not an assumption. For example, the material-to-card feature combines short adjacent paragraphs into one chunk; a test should validate chunking rules rather than assume one card per paragraph.
 - Distinguish application failures from test-harness failures. On a failed assertion, record the exact UI state and reproduce the behavior manually before changing product code.
 - Treat “I cannot find it” as a usability defect, not as user error. Verify the visible label and walk the real interaction path; documentation alone is not enough when an important control is hidden behind vague wording.
@@ -57,12 +63,12 @@ The conversational record also shows early confusion about which text belongs in
 | Phase | Human + AI actions | Required artifact | Exit check |
 |---|---|---|---|
 | **0. Align and set up** | Confirm user outcome, audience, rubric, constraints, urgency, workspace, branch, and whether the user wants explanation, a plan, or implementation. Explain editor vs terminal. | Short task brief with in-scope/out-of-scope items and workspace state. | Both agree what is being changed, where, and why. |
-| **1. Inspect and baseline** | Read the user-facing docs, relevant code, current git status, existing tests, data model, and prior decisions. Back up or isolate real user data before testing. | Current-state/operations row with date, evidence, and unknowns. | Existing behavior and dirty work are known; no user changes are overwritten. |
-| **2. Research and classify evidence** | Classify each claim as peer-reviewed evidence, a standard, official platform documentation, competitor marketing, user preference, or design judgment. Reopen current sources when version matters. | Source entry with URL, date, scope, limitations, and the decision it informs. | No unsupported claim is presented as fact; unresolved evidence gaps are named. |
-| **3. Design and define acceptance** | Select the smallest useful implementation. Map each requirement to visible behavior, data changes, accessibility, error handling, and tests. Ask when a choice materially changes user experience or architecture. | Feature brief and acceptance checklist. | A tester can tell objectively when the change works and what is deliberately deferred. |
+| **1. Inspect and baseline** | Read the user-facing docs, relevant code, current git status, existing tests, data model, prior decisions, and previous baseline revision. Back up or isolate real user data before testing. | Current-state/operations row plus an append-only baseline revision entry when an observation changes. | Existing behavior, previous value, dirty work, and evidence are known; no user changes or historical baseline are overwritten. |
+| **2. Research and classify evidence** | Classify each claim as peer-reviewed evidence, a standard, official platform documentation, competitor marketing, public user review, direct user feedback, or design judgment. Treat competitor feature pages as behavior evidence only; do not infer internal motives. Sample reviews only with a documented platform/date/window/query/inclusion method and note selection bias. | Source entry with URL, date, scope, limitations, evidence class, and the decision it informs. | No unsupported claim is presented as fact; review data are not represented as a representative survey; unresolved evidence gaps are named. |
+| **3. Design and define acceptance** | Map each visible UI control to the user task, homework/rubric item, target-user need, competitor pattern, research basis, rationale/confidence, accessibility/privacy risk, and acceptance check. Separate evidence-backed behavior from hypotheses. Ask when a choice materially changes user experience or architecture. | Feature brief, UI control map, and acceptance checklist. | A tester can tell what the control does and why it exists, what evidence supports it, how to check it, and what remains uncertain. |
 | **4. Implement a vertical slice** | Make surgical changes following project patterns; preserve existing behavior and the assignment constraints. Add a focused test for new/fixed behavior and update directly related docs. | Code diff, source links where relevant, and updated feature map. | The feature works end to end; no silent failure or success-shaped fallback. |
-| **5. Verify and record** | Run syntax/static checks, the smallest relevant tests, then connected workflow tests. Include keyboard, responsive, speech, persistence, and reduced-motion checks when affected. Record the environment and restore test data. | Dated test record with test IDs, result, evidence, and gaps. | All critical acceptance checks pass, or remaining failures are explicitly blocked/not tested. |
-| **6. Review and learn** | Compare the diff with scope, inspect errors and accessibility, recheck source claims, and record a short retrospective. | Review notes and updated SWOT/work item if a recurring process issue was found. | No unrelated edits; known risks and follow-up work are owned. |
+| **5. Verify and record** | Run syntax/static checks, the smallest relevant tests, then connected workflow tests. Include keyboard, responsive, speech, persistence, reduced motion, and affected security/privacy boundaries. Record the environment and restore test data. When a baseline changes, preserve both old/new values and why. | Dated test record and baseline revision entry with test IDs, result, evidence, security/privacy gaps, and limits. | All critical acceptance checks pass, or remaining failures are explicitly blocked/not tested; no security certification is implied and history remains traceable. |
+| **6. Review and learn** | Compare the diff with scope, homework crosswalk, UI rationale map, data flows, errors, and accessibility; recheck source claims and distinguish user evidence from assumptions. Record a short retrospective. | Review notes and updated SWOT/work item if a recurring process issue was found. | No unrelated edits; no rubric or security gate is silently skipped; known risks and follow-up work are owned. |
 | **7. Release and communicate** | Confirm branch/remote, inspect status and diff, verify tests, obtain human approval, commit and push only as authorized, then check the remote. | Release note with tested/committed/pushed states separated. | Remote content is verified; user receives clear next steps and limitations. |
 
 ### Standard feature/change record
@@ -75,9 +81,10 @@ User problem and expected outcome:
 Assignment/product constraints:
 Audience and assumptions:
 Evidence or source (URL, date, scope, limitation):
+UI location / competitor pattern / rationale confidence:
 Acceptance criteria:
 Files/behaviors affected:
-Risks and accessibility considerations:
+Risks, accessibility, and data/security considerations:
 Tests (environment, steps, result):
 Known gaps / not tested:
 Status: proposed | in progress | tested | blocked | released
@@ -90,7 +97,10 @@ For each operational part (feature, data, accessibility, performance, research, 
 
 ```text
 Baseline ID:
+Previous baseline / date:
 Observed value or behavior:
+New baseline / date:
+Reason and code/process change:
 Measurement definition:
 Environment and date:
 Evidence / test ID:
@@ -106,8 +116,9 @@ For recurring documentation-link checks, prefer [Lychee](https://github.com/lych
 
 ## Recommended next decisions
 
-1. Confirm the intended geography and learner segment before any market-size or pricing research.
-2. Run formative task sessions with students/independent learners and people who use different access methods; validate the problems before adding features.
-3. Decide whether cross-device backup/sync is needed; local-only storage is the main portability limitation.
-4. Add a small executable regression suite without changing the app's no-build runtime.
-5. Schedule a manual competitor/source refresh before major strategy decisions; keep the report date and evidence quality visible.
+1. Confirm the intended geography and learner segment before any market-size or pricing research; keep the exact class handout available for a complete rubric audit.
+2. Run formative task sessions with students/independent learners and people who use different access methods; validate the below-card controls, themes, and material workflow before adding features.
+3. If competitor reviews are used, preregister a small, dated sampling/coding method and report anecdotal limitations; do not claim that ratings or a few reviews represent the market.
+4. Decide whether cross-device backup/sync is needed; local-only storage is the main portability limitation. Any new server/service must first pass privacy and threat-model review.
+5. Add a small executable regression suite without changing the app's no-build runtime.
+6. Schedule a manual competitor/source refresh before major strategy decisions; keep report date, evidence class, and research gaps visible.

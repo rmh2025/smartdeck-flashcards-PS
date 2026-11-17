@@ -41,22 +41,22 @@ Open `index.html` in a browser. Your decks are saved in that browser on this dev
 ## What it does
 
 - Create, rename, and delete decks.
-- Create, edit, and delete cards with a prompt and answer.
+- Create, edit, and delete individual cards, or build a reviewed draft set from lesson material.
 - Flip cards, move forward and back, shuffle the deck, and search card text.
 - Rate cards Again, Hard, Good, or Easy. Again/Hard go to the review pile; Good/Easy go to the learned pile.
 - Repeat a card later, redo a study session, and reshuffle either pile.
 - Track learned and review piles, a Good/Easy streak, and simple Again/Hard/Good/Easy review intervals; start a session with cards that are due.
 - Read questions and answers aloud with browser-provided voices, or play a self-rated spoken-host quiz with three rotating characters. Completing a quiz with at least 70% earns a round win; three consecutive wins earn a tournament victory.
 - Earn a subject completion award by rating every card in a deck as learned. Per-deck quiz records, win streaks, tournament wins, and subject awards are saved in LocalStorage and included in JSON exports.
-- Paste source notes with a topic; SmartDeck splits them into editable cards and can keep a source URL with each card.
+- Paste lesson notes, load a browser-readable HTTPS page, or choose a text/Markdown/HTML file; SmartDeck drafts editable cards and keeps the source URL when provided.
 - Search the web, academic/government sources, PubMed, or MDN for a topic. Search opens browser results; review and choose sources yourself.
-- Import and export a deck as JSON.
+- Import and export a deck as JSON (imports are limited to 10 MB and 1,000 cards).
 - Save decks, study progress, and the last active deck in the browser.
 - Study in a full-height tabletop arena with a tactile flip card, quick rating controls, and collapsible deck, audio, and appearance drawers.
-- Open **Appearance** in the top bar to choose one of four saved accent palettes or upload/reset a PNG, JPEG, or WebP background image (up to 1.5 MB). A dark overlay remains over photos for text readability; palettes are curated choices, not automatic image-color detection. Settings stay in local browser storage.
+- Open **Appearance** in the top bar to switch among four full interface themes: Tech Glass, Sunday Sauce, Paper Studio, and Arcade Signal. Themes change typography, color, surface transparency, button/card shapes, spacing, and—in Sunday Sauce—the deck layout. Upload/reset a PNG, JPEG, or WebP background image (up to 1.5 MB); the lighter theme washes and translucent panels let it show through. Themes and photos stay in local browser storage.
 - Adapt the play area to small screens, support keyboard navigation, show focus indicators, and honor reduced-motion preferences.
 
-SmartDeck does not scrape web pages or send pasted material to an AI service. Browser-only apps cannot reliably read arbitrary sites because of cross-origin restrictions, and a private AI API key must not be put in a public HTML file. You choose a source, paste material you may use, and can edit the resulting starter cards. The source form includes a selectable Copilot prompt for researching a topic and returning cited SmartDeck JSON; review the sources, then use **Deck tools → Import JSON**. For competitor research, ask for a dated comparison of public claims with official URLs and limitations—summarize rather than copying or scraping competitor content. JSON import/export also lets you bring in cards drafted with an AI assistant.
+SmartDeck does not send lesson text to an AI service. Its material builder can make local draft cards from pasted text or authorized text files, and it can try a direct HTTPS fetch for HTML/plain-text pages that allow this browser to read them. It does not use a proxy, send login credentials, bypass access controls, or claim to extract an entire book. Browser cross-origin rules prevent JavaScript from reading many sites even when you have permission to study their content; PDFs and login-protected sources are not supported by this importer. If a link is blocked, copy text you are allowed to use or choose a local text/Markdown/HTML file. Review and edit every draft before adding it. For AI-generated source-backed cards, use the optional Copilot prompt and import reviewed JSON; SmartDeck itself makes no AI calls.
 
 Speech is optional and uses voices installed in the browser or operating system; available voices differ by device. The quiz does not automatically judge free-form answers: you reveal the model answer and rate yourself, so valid paraphrases are not incorrectly marked wrong.
 
@@ -68,18 +68,21 @@ For future product, learning, accessibility, browser API, storage, and publishin
 
 For the reusable human/AI process, project SWOT, acceptance checklist, and release gates, see the [process review and workflow](docs/reports/PROCESS_REVIEW_AND_WORKFLOW.md). The [contributor guidance](AGENTS.md) explains how future contributors and coding assistants should use the source library and preserve the app's single-file constraint. The [quality baseline](docs/reports/QUALITY_BASELINE.md) records dated test evidence and known gaps.
 
+When a control or workflow feels confusing, start with the [UI control map in the product and market baseline](docs/reports/PRODUCT_AND_MARKET_BASELINE.md#ui-control-map-what-it-does-why-it-is-there-and-what-to-question). It traces the study card, below-card controls, drawers, and source workflow to their user task, class requirement, evidence, design rationale, and test. Competitor feature pages are not treated as proof of their internal design motives, and competitor reviews have not yet been sampled.
+
 ## Progression rules and evidence
 
 The quiz uses a transparent game rule: a completed, self-rated quiz at 70% or higher wins a round, and three consecutive round wins earn a tournament victory. A subject completion award is earned when every card in that deck is in the Learned pile. These are practice milestones, not research-validated mastery thresholds or objective grading; the app continues to track due reviews after an award.
 
 The patterns are informed by product conventions and learning research, without claiming that streaks alone improve retention. Quizlet documents progressive study rounds, answer streaks, and mastery groups ([Learn](https://help.quizlet.com/hc/en-us/articles/360030841732-Studying-on-Quizlet), [Answer Streaks](https://help.quizlet.com/hc/en-us/articles/40011154960653-Studying-with-Answer-Streaks), [Progress](https://help.quizlet.com/hc/en-us/articles/360048803491-Using-Progress-for-targeted-studying)). A 2024 systematic review (published online in 2023) supports retrieval and distributed practice in health-professions education, while noting varied methods and outcomes ([Trumble et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC11078833/)). A 2025 meta-analysis found a positive pooled effect for game-thinking in nursing education, but does not isolate streaks as a cause ([Nylén-Eriksen et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC11776282/)).
 
-## Topic and source workflow
+## Build a study set from material
 
-1. Choose a deck and select **From material**.
-2. Enter a topic and use **Search sources** to open general web, academic/government, PubMed, or MDN results. Review a result and copy its URL. The search opens a results page; it does not fetch or verify the source.
-3. Paste your permitted notes or source excerpt and the URL. SmartDeck splits the text into chunks of about 700 characters and creates editable prompt/answer cards. The prompt is a starter, not an AI-generated question, so improve it before studying.
-4. For richer question-and-answer cards, open **Use Copilot Chat to make a source-backed deck** in the source form, select the example prompt, press Ctrl+C, and paste it into Copilot Chat with your topic and learner level. Review the sources and card content, then copy the returned JSON, close the form, and choose **Deck tools → Import JSON**. The accepted format is:
+1. Select the deck you want to add to, open **Deck stack**, and choose **Build from text or link**. You can also find **Build cards from material** in **Deck tools**.
+2. Paste permitted lesson text, choose a local `.txt`, `.md`, `.markdown`, or `.html` file, or enter an HTTPS lesson URL and select **Load page text**. A URL is read only if its server allows browser access; this is a direct, user-initiated request without credentials or a proxy.
+3. Give the material a topic if useful, confirm that you have permission to use it, and select **Preview draft cards**. Term-definition rows, question/answer lines, headings, and prose create editable cues and answers. Review and edit the drafts, then choose **Add cards to [deck]**.
+4. If direct page loading is blocked, copy/paste the permitted lesson text or choose a text/Markdown/HTML file. Login-only pages, PDFs, full-book extraction, and sources that block cross-origin access are not supported; permission does not override a website's technical controls. The app does not fetch whole sites or send notes to AI.
+5. For AI-generated source-backed cards, open **Need richer question-and-answer drafts?** in the builder, copy its prompt into Copilot Chat, then review the returned cards and citations before importing JSON. The accepted format is:
 
    ```json
    {
@@ -96,7 +99,7 @@ The patterns are informed by product conventions and learning research, without 
    }
    ```
 
-This keeps the submitted app one-file and browser-only while making any source selection reviewable; it does not claim that a website or database has been independently verified.
+The one-file browser app keeps material processing local; direct URL loading depends on the source server's CORS policy. Generated cards are drafts, not an accuracy guarantee, and source quality is not independently verified.
 
 ## How the file is organized
 
